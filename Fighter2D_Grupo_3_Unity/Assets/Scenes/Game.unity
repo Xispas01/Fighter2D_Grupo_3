@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 758, y: 801}
+  m_AnchoredPosition: {x: 831.51, y: 739}
   m_SizeDelta: {x: 1519.344, y: 332.484}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &9724793
@@ -826,7 +826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -336.53}
+  m_AnchoredPosition: {x: 0, y: -296}
   m_SizeDelta: {x: 784.866, y: 227.631}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &718907256
@@ -2181,6 +2181,7 @@ MonoBehaviour:
   jump: 400
   speed: 2
   speedLimit: 5
+  kb: 300
   pies: {fileID: 448774186}
   ladoD: {fileID: 1479076782}
   ladoI: {fileID: 1101061415}

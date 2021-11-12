@@ -12,10 +12,6 @@ public class SceneSwitch : MonoBehaviour
         SceneManager.LoadScene(s);
     }
 
-    public void zScreenChange(GameObject target){
-        target.SetActive(!target.activeSelf);
-    }
-
     public void zEndGame(){
         Application.Quit();
         Debug.Log("Adios!");

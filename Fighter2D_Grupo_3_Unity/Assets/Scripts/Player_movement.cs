@@ -7,6 +7,7 @@ public class Player_movement : MonoBehaviour
     public float jump = 300.0f;
     public float speed = 2.0f;
     public float speedLimit = 5.0f;
+    public float kb = 300.0f;
     
     public Transform pies;
     public Transform ladoD;
@@ -53,9 +54,8 @@ public class Player_movement : MonoBehaviour
             } else if (Input.GetKeyDown(keys["Jump"]) && (jumpsN < jumpsMax))
             {
                 aux = rb.velocity;
-                aux.y = 0f;
-                rb.velocity = aux;
-                rb.AddForce(Vector3.up * jump);
+                rb.velocity = new Vector2(aux.x,0f);
+                rb.AddForce(Vector3.up * jump + Vector3.left * kb);
                 jumpsN++;
             }
             
