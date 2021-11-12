@@ -34,12 +34,8 @@ public class PauseMenu : MonoBehaviour{
     }
 
 
-    public void Resume(){
+    public void zResume(){
         Time.timeScale=1;
         IsPaused = false;     
-    }
-     
-    public void ExitGame(){
-        SceneManager.LoadScene(0);
     }
 }

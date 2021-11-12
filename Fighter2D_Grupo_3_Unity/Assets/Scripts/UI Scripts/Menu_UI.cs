@@ -6,7 +6,16 @@ public class Menu_UI : MonoBehaviour
 {
     public void Testing(){Debug.Log("Funciona !!");}
 
-    public void visible(GameObject target){target.SetActive(true);}
-    public void inVisible(GameObject target){target.SetActive(false);}
+    public void visible(GameObject target){
+        target.SetActive(true);
+    }
+
+    public void inVisible(GameObject target){
+        target.SetActive(false);
+    }
+
+    public void Cambio(GameObject target){
+        target.SetActive(!target.activeSelf);
+    }
 
 }

@@ -5,11 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitch : MonoBehaviour
 {
-    public void playGame(){
-        SceneManager.LoadScene(1);
+    public void zSceneChange(int i){
+        SceneManager.LoadScene(i);
+    }
+    public void zSceneChange(string s){
+        SceneManager.LoadScene(s);
     }
 
-    public void endGame(){
+    public void zScreenChange(GameObject target){
+        target.SetActive(!target.activeSelf);
+    }
+
+    public void zEndGame(){
         Application.Quit();
         Debug.Log("Adios!");
     }

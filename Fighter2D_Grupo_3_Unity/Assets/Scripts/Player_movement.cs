@@ -45,10 +45,10 @@ public class Player_movement : MonoBehaviour
             //Salto configurable con jumpsMax como limite de saltos aereos
             if (Physics2D.OverlapBox(pies.position, limSuelo, 0.0f) != null)
             {
+                jumpsN = 0;
                 if (Input.GetKeyDown(keys["Jump"]))
                 {
                     rb.AddForce(Vector3.up * jump);
-                    jumpsN = 0;
                 }
             } else if (Input.GetKeyDown(keys["Jump"]) && (jumpsN < jumpsMax))
             {

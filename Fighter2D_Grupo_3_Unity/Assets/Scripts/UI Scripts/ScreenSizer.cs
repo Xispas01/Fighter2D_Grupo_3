@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScreenSizer : MonoBehaviour
 {
     public static int ancho = 900;
     public static int altura = 600;
-    public static bool full = false;
+    public static bool full = true;
 
+    
     private void Start() {
-       Screen.SetResolution(ancho,altura,full); 
+        ancho = Screen.width;
+        altura = Screen.height;
+        Screen.SetResolution(ancho,altura,full); 
     }
 
     public void setAncho(int nuevo){
@@ -20,11 +24,19 @@ public class ScreenSizer : MonoBehaviour
         altura = nuevo;
     }
 
-    public void setFull(bool nuevo){
+    public void setToggle(Toggle t){
         if (full){
-            full = false;
+            t.isOn = true;
         }else{
+            t.isOn = false;
+        }
+    }
+
+    public void setFull(Toggle t){
+        if (t.isOn){
             full = true;
+        }else{
+            full = false;
         }
     }
         

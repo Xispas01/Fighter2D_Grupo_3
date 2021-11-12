@@ -363,9 +363,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: visible
+      - m_Target: {fileID: 507879130}
+        m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 621629706}
@@ -375,9 +375,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: inVisible
+      - m_Target: {fileID: 507879130}
+        m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1822485146}
@@ -518,8 +518,8 @@ RectTransform:
   m_Children:
   - {fileID: 913807191}
   - {fileID: 1281945634}
-  - {fileID: 1822485147}
   - {fileID: 621629707}
+  - {fileID: 1822485147}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -598,10 +598,10 @@ RectTransform:
   m_Father: {fileID: 1281945634}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0, y: 36.058838}
-  m_SizeDelta: {x: 267.0451, y: 66.8014}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -247}
+  m_SizeDelta: {x: 182.844, y: 90.513}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &148062591
 MonoBehaviour:
@@ -649,7 +649,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 507879130}
         m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
-        m_MethodName: endGame
+        m_MethodName: zEndGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1135,8 +1135,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 99.00002}
-  m_SizeDelta: {x: 404.0782, y: 165.8078}
+  m_AnchoredPosition: {x: 0, y: 239.99988}
+  m_SizeDelta: {x: 404.078, y: 151.229}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &485998049
 MonoBehaviour:
@@ -1184,14 +1184,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 507879130}
         m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
-        m_MethodName: playGame
-        m_Mode: 1
+        m_MethodName: zSceneChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Game
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &485998050
@@ -1366,17 +1366,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496669007}
   m_CullTransparentMesh: 1
---- !u!114 &507879127 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1692974320191782630, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
-  m_PrefabInstance: {fileID: 1692974320422625329}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4979bf54ac25b4345bd0870e8ce481b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &507879129 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1692974320191782632, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
@@ -1611,12 +1600,12 @@ RectTransform:
   - {fileID: 2142774453}
   - {fileID: 1081375729}
   m_Father: {fileID: 98898270}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 936.9492, y: 694.3703}
+  m_SizeDelta: {x: -663.0508, y: -205.6297}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &621629708
 MonoBehaviour:
@@ -1692,8 +1681,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: -62}
-  m_SizeDelta: {x: 336.1611, y: 79.3677}
+  m_AnchoredPosition: {x: 0, y: -5.279003}
+  m_SizeDelta: {x: 336.161, y: 88.558}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &717841911
 MonoBehaviour:
@@ -1739,9 +1728,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: inVisible
+      - m_Target: {fileID: 507879130}
+        m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1281945631}
@@ -1751,9 +1740,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: visible
+      - m_Target: {fileID: 507879130}
+        m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 621629706}
@@ -2440,10 +2429,10 @@ RectTransform:
   m_Father: {fileID: 98898270}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 463.83496, y: 432.323}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -51.325012}
+  m_SizeDelta: {x: -1136.769, y: -250.921}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1312566029
 GameObject:
@@ -2680,8 +2669,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0002203, y: -77.045}
-  m_SizeDelta: {x: 336.16, y: 49.277}
+  m_AnchoredPosition: {x: -6.5663, y: -77.045}
+  m_SizeDelta: {x: 323.03, y: 49.277}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1362100988
 MonoBehaviour:
@@ -2733,10 +2722,10 @@ MonoBehaviour:
       - m_Target: {fileID: 507879129}
         m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
         m_MethodName: setFull
-        m_Mode: 6
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1362100988}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2754,7 +2743,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &1498181964
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,7 +3430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: 24.638}
+  m_AnchoredPosition: {x: -0.000015259, y: 22.722008}
   m_SizeDelta: {x: 206.419, y: 45.444}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1787445976
@@ -3576,12 +3565,12 @@ RectTransform:
   - {fileID: 16774853}
   - {fileID: 1362100987}
   m_Father: {fileID: 98898270}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 936.9492, y: 694.3703}
+  m_SizeDelta: {x: -663.0508, y: -205.6297}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1822485148
 MonoBehaviour:
@@ -3913,9 +3902,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: visible
+      - m_Target: {fileID: 507879130}
+        m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1281945631}
@@ -3925,9 +3914,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: inVisible
+      - m_Target: {fileID: 507879130}
+        m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 621629706}
@@ -4349,9 +4338,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: inVisible
+      - m_Target: {fileID: 507879130}
+        m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 621629706}
@@ -4361,14 +4350,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: visible
+      - m_Target: {fileID: 507879130}
+        m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1822485146}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 900
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 507879129}
+        m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
+        m_MethodName: setToggle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1362100988}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
