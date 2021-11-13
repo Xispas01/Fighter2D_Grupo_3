@@ -16,6 +16,10 @@ public class Player_movement : MonoBehaviour
     public int jumpsMax = 1;                                                                            //Maximos AirJumps
     int jumpsN;                                                                                         //AirJumps actuales
 
+    public Vector2 StartingPosition;
+    public bool touchCheckpoint;
+    public GameObject lastCheckpoint;
+
     public Vector2 limSuelo = new Vector2(0.5f, 0f);                                                    //Tamaños de boxcast Techo/suelo
     public Vector2 limLado = new Vector2(0f, 0.5f);                                                     //Tamaños de boxcast Lados
 
@@ -41,12 +45,19 @@ public class Player_movement : MonoBehaviour
         keys.Add("Left", KeyCode.A);                                                                    //Asigna a la palabra "Left" la tecla (KeyCode) A
         keys.Add("Right", KeyCode.D);                                                                   //Asigna a la palabra "Right" la tecla (KeyCode) D
         keys.Add("Jump", KeyCode.Space);                                                                //Asigna a la palabra "Jump" la tecla (KeyCode) Space
+        keys.Add("Reset", KeyCode.R);                                                                   //Asigna a la palabra "Reset" la tecla (KeyCode) R
 
         ground = LayerMask.GetMask("Terrain","WallJump","Empujable");                                   //Asigna valor a las mascaras de RayCast
         wall = LayerMask.GetMask("Terrain","WallJump");                                                 //Asigna valor a las mascaras de RayCast
         wallJump = LayerMask.GetMask("WallJump");                                                       //Asigna valor a las mascaras de RayCast
 
         canControl = true;                                                                              //Inicializa a true
+
+        aux2D = pies.position;
+        StartingPosition = new Vector2 (aux2D.x, aux2D.y + 0.5f);
+
+        touchCheckpoint = false;
+        lastCheckpoint = null;
     }
 
     // Update is called once per frame
@@ -147,6 +158,10 @@ public class Player_movement : MonoBehaviour
             {
                 Vector2 aux2D = rb.velocity;                                                              //Reinicio velocidad horizontal
                 rb.velocity = new Vector2(0.0f, aux2D.y);                                                 
+            }
+
+            if(Input.GetKeyUp(keys["Reset"])){
+
             }
         }
     }
