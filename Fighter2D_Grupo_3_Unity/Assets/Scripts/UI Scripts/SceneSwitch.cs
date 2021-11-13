@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class SceneSwitch : MonoBehaviour
+{
+    public void zSceneChange(int i){
+        SceneManager.LoadScene(i);
+    }
+    public void zSceneChange(string s){
+        SceneManager.LoadScene(s);
+    }
+
+    public void zEndGame(){
+        Application.Quit();
+        Debug.Log("Adios!");
+    }
+}
