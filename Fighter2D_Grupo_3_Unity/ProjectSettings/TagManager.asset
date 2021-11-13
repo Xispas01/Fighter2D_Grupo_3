@@ -9,7 +9,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ReSpawn
   - Water
   - UI
   - Background
@@ -18,8 +18,8 @@ TagManager:
   - WallJump
   - Player
   - Frontground
-  - 
-  - 
+  - DeathBarrier
+  - Empujable
   - 
   - 
   - 
@@ -47,6 +47,9 @@ TagManager:
     locked: 0
   - name: MidGround
     uniqueID: 3152507509
+    locked: 0
+  - name: Spawnwer
+    uniqueID: 2190352785
     locked: 0
   - name: Terrain
     uniqueID: 2956569897

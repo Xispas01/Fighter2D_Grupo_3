@@ -19,18 +19,13 @@ public class Player_movement : MonoBehaviour
     public Vector2 limSuelo = new Vector2(0.5f, 0f);                                                    //Tamaños de boxcast Techo/suelo
     public Vector2 limLado = new Vector2(0f, 0.5f);                                                     //Tamaños de boxcast Lados
 
-    private int terrain;                                                                                //Mascaras para raycast
+    private int ground;                                                                                 //Mascaras para raycast
+    private int wall;                                                                                   //Mascaras para raycast
     private int wallJump;                                                                               //Mascaras para raycast
 
-    private bool canControl = true;                                                                     //Cooldown Control WallJump
+    private bool canControl = true;                                                                     //Cooldown Control WallJump (Sirve para ser lanzado sin control)
 
-    private bool BoxCastWallJumpD;                                                                      //Resultados de BoxCast
-    private bool BoxCastWallJumpI;                                                                      //Resultados de BoxCast
-    private bool BoxCastWallD;                                                                          //Resultados de BoxCast
-    private bool BoxCastWallI;                                                                          //Resultados de BoxCast
-    private bool BoxCastGround;                                                                         //Resultados de BoxCast
-
-    private Vector2 aux;                                                                                //Vector 2D auxiliar
+    private Vector2 aux2D;                                                                              //Vector 2D auxiliar
 
 
     Dictionary<string,KeyCode> keys = new Dictionary<string, KeyCode>();                                //Diccionario para controles configurables
@@ -47,7 +42,8 @@ public class Player_movement : MonoBehaviour
         keys.Add("Right", KeyCode.D);                                                                   //Asigna a la palabra "Right" la tecla (KeyCode) D
         keys.Add("Jump", KeyCode.Space);                                                                //Asigna a la palabra "Jump" la tecla (KeyCode) Space
 
-        terrain = LayerMask.GetMask("Terrain","WallJump");                                              //Asigna valor a las mascaras de RayCast
+        ground = LayerMask.GetMask("Terrain","WallJump","Empujable");                                   //Asigna valor a las mascaras de RayCast
+        wall = LayerMask.GetMask("Terrain","WallJump");                                                 //Asigna valor a las mascaras de RayCast
         wallJump = LayerMask.GetMask("WallJump");                                                       //Asigna valor a las mascaras de RayCast
 
         canControl = true;                                                                              //Inicializa a true
@@ -58,7 +54,7 @@ public class Player_movement : MonoBehaviour
     {
         if (PauseMenu.IsPaused==false && canControl == true)                                            //Revision de pausa Y control
         {
-            if (Physics2D.OverlapBox(pies.position, limSuelo, 0.0f, terrain) != null )                  //Revisa BoxCast al Suelo
+            if (Physics2D.OverlapBox(pies.position, limSuelo, 0.0f, ground) != null )                   //Revisa BoxCast al Suelo
             {
                 jumpsN = 0;                                                                             //Reinicia AirJumps
                 if (Input.GetKeyDown(keys["Jump"]))                                                     
@@ -67,40 +63,47 @@ public class Player_movement : MonoBehaviour
                 }
             }else if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, wallJump) != null)             //Revisa BoxCast a muro Walljump
             {
-                aux = rb.velocity;                                                                      //Reinicia velocidad de caida a 3 (Efecto deslizar pared)
-                rb.velocity = new Vector2(aux.x,-3f);                                                   //Reinicia velocidad de caida a 3 (Efecto deslizar pared)
+                
+                aux2D = rb.velocity;                                                                      
+                if(aux2D.y <= -3f)                                                                        //Reinicia velocidad de caida a 3 si va a caer(Efecto deslizar pared)
+                {
+                rb.velocity = new Vector2(aux2D.x,-3f);                                                   
+                }
 
                 if (Input.GetKeyDown(keys["Jump"]))                                                     
                 {
-                    aux = rb.velocity;                                                                  
-                    rb.velocity = new Vector2(aux.x,0f);                                                
+                    aux2D = rb.velocity;                                                                  
+                    rb.velocity = new Vector2(aux2D.x,0f);                                                
                     rb.AddForce(Vector3.up * jump + Vector3.left * Wj);                                 //Salta con fuerza lateral extra
                     canControl = false;                                                                
                     StartCoroutine("WallJumpCD");                                                       //Inicia cooldown de WallJump
                 }
             }else if(Physics2D.OverlapBox(ladoI.position, limLado, 0.0f, wallJump) != null)             //Revisa BoxCast a muro Walljump
             {
-                aux = rb.velocity;                                                                      //Reinicia velocidad de caida a 3 (Efecto deslizar pared)
-                rb.velocity = new Vector2(aux.x,-3f);                                                   //Reinicia velocidad de caida a 3 (Efecto deslizar pared)
+                aux2D = rb.velocity;                                                                      
+                if(aux2D.y <= -3f)                                                                        //Reinicia velocidad de caida a 3 si va a caer(Efecto deslizar pared)
+                {
+                rb.velocity = new Vector2(aux2D.x,-3f);                                                   
+                }
 
                 if (Input.GetKeyDown(keys["Jump"]))                                                     
                 {
-                    aux = rb.velocity;                                                                  
-                    rb.velocity = new Vector2(aux.x,0f);                                                
+                    aux2D = rb.velocity;                                                                  
+                    rb.velocity = new Vector2(aux2D.x,0f);                                                
                     rb.AddForce(Vector3.up * jump + Vector3.right * Wj);                                //Salta con fuerza lateral extra
                     canControl = false;                                                                
                     StartCoroutine("WallJumpCD");                                                       //Inicia cooldown de WallJump
                 }
             } else if (Input.GetKeyDown(keys["Jump"]) && jumpsN < jumpsMax)                             //Revisa limite de AirJumps
             {
-                aux = rb.velocity;                                                                      //Reinicia velocidad vertical antes de saltar
-                rb.velocity = new Vector2(aux.x,0f);                                                    //Reinicia velocidad vertical antes de saltar
+                aux2D = rb.velocity;                                                                      //Reinicia velocidad vertical antes de saltar
+                rb.velocity = new Vector2(aux2D.x,0f);                                                    //Reinicia velocidad vertical antes de saltar
                 rb.AddForce(Vector3.up * jump);                                                         
                 jumpsN++;
                 
             }
 
-            if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, terrain) == null)                    //Evita aplicar fuerza contra un muro
+            if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, wall) == null)                       //Evita aplicar fuerza contra un muro
             {                                                                                           
                 if (Input.GetKey(keys["Right"]))                                                        //Movimiento Derecha
                 {                                                                                       
@@ -108,13 +111,18 @@ public class Player_movement : MonoBehaviour
 
                     if (rb.velocity.x >= speedLimit)                                                    //Limitacion de velocidad
                     {                                                                                   
-                        aux = rb.velocity;                                                              
-                        rb.velocity = new Vector2(speedLimit, aux.y);                                   
+                        aux2D = rb.velocity;                                                              
+                        rb.velocity = new Vector2(speedLimit, aux2D.y);                                   
                     }                                                                                   
                 }                                                                                       
-            } 
+            }else{
+                aux2D = rb.velocity;                                                              //Reinicio velocidad horizontal
+                if(aux2D.x > 0){
+                rb.velocity = new Vector2(0.0f, aux2D.y);
+                }  
+            }
             
-            if (Physics2D.OverlapBox(ladoI.position, limLado, 0.0f, terrain) == null)                   //Evita aplicar fuerza contra un muro
+            if (Physics2D.OverlapBox(ladoI.position, limLado, 0.0f, wall) == null)                      //Evita aplicar fuerza contra un muro
             {                                                                                           
                 if (Input.GetKey(keys["Left"]))                                                         //Movimiento Izquierda
                 {                                                                                       
@@ -122,18 +130,23 @@ public class Player_movement : MonoBehaviour
 
                     if (rb.velocity.x <= speedLimit)                                                    //Limitacion de velocidad
                     {                                                                                   
-                        aux = rb.velocity;                                                              
-                        rb.velocity = new Vector2(-speedLimit, aux.y);                                  
+                        aux2D = rb.velocity;                                                              
+                        rb.velocity = new Vector2(-speedLimit, aux2D.y);                                  
                     }                                                                                   
                 }                                                                                       
+            }else{
+                Vector2 aux2D = rb.velocity;                                                              //Reinicio velocidad horizontal
+                if(aux2D.x < 0){
+                rb.velocity = new Vector2(0.0f, aux2D.y);
+                }  
             }                                                                                                                                                                                     
 
             //Reinicio velocidad eje X
             if (Input.GetKeyUp(keys["Right"]) || Input.GetKeyUp(keys["Left"])                           //Revision soltar teclas movimiento
             || (Input.GetKey(keys["Right"]) && Input.GetKey(keys["Left"])))                             //Revision pulsar simultaneas teclas movimiento
             {
-                Vector2 aux = rb.velocity;                                                              //Reinicio velocidad horizontal
-                rb.velocity = new Vector2(0.0f, aux.y);                                                 
+                Vector2 aux2D = rb.velocity;                                                              //Reinicio velocidad horizontal
+                rb.velocity = new Vector2(0.0f, aux2D.y);                                                 
             }
         }
     }
