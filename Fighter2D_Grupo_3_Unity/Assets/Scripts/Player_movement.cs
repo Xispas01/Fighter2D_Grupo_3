@@ -56,7 +56,7 @@ public class Player_movement : MonoBehaviour
     // Update is called once per frame
     void Update()                                                                                       //Inicio Update()
     {
-        if (PauseMenu.IsPaused==false)                                                                  //Revision de pausa
+        if (PauseMenu.IsPaused==false && canControl == true)                                            //Revision de pausa Y control
         {
             if (Physics2D.OverlapBox(pies.position, limSuelo, 0.0f, terrain) != null )                  //Revisa BoxCast al Suelo
             {
@@ -65,8 +65,7 @@ public class Player_movement : MonoBehaviour
                 {
                     rb.AddForce(Vector3.up * jump);                                                     
                 }
-            }else if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, wallJump) != null              //Revisa BoxCast a muro Walljump
-            && canControl == true)                                                                      //Revisa BoxCast a muro Walljump
+            }else if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, wallJump) != null)             //Revisa BoxCast a muro Walljump
             {
                 aux = rb.velocity;                                                                      //Reinicia velocidad de caida a 3 (Efecto deslizar pared)
                 rb.velocity = new Vector2(aux.x,-3f);                                                   //Reinicia velocidad de caida a 3 (Efecto deslizar pared)
@@ -79,8 +78,7 @@ public class Player_movement : MonoBehaviour
                     canControl = false;                                                                
                     StartCoroutine("WallJumpCD");                                                       //Inicia cooldown de WallJump
                 }
-            }else if(Physics2D.OverlapBox(ladoI.position, limLado, 0.0f, terrain) != null               //Revisa BoxCast a muro Walljump
-            && canControl == true)                                                                      //Revisa BoxCast a muro Walljump
+            }else if(Physics2D.OverlapBox(ladoI.position, limLado, 0.0f, wallJump) != null)             //Revisa BoxCast a muro Walljump
             {
                 aux = rb.velocity;                                                                      //Reinicia velocidad de caida a 3 (Efecto deslizar pared)
                 rb.velocity = new Vector2(aux.x,-3f);                                                   //Reinicia velocidad de caida a 3 (Efecto deslizar pared)
@@ -104,7 +102,7 @@ public class Player_movement : MonoBehaviour
 
             if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, terrain) == null)                    //Evita aplicar fuerza contra un muro
             {                                                                                           
-                if (Input.GetKey(keys["Right"]) && canControl == true)                                  //Movimiento Derecha
+                if (Input.GetKey(keys["Right"]))                                                        //Movimiento Derecha
                 {                                                                                       
                     rb.AddForce(Vector2.right * speed, ForceMode2D.Impulse);                            
 
@@ -118,7 +116,7 @@ public class Player_movement : MonoBehaviour
             
             if (Physics2D.OverlapBox(ladoI.position, limLado, 0.0f, terrain) == null)                   //Evita aplicar fuerza contra un muro
             {                                                                                           
-                if (Input.GetKey(keys["Left"]) && canControl == true)                                   //Movimiento Izquierda
+                if (Input.GetKey(keys["Left"]))                                                         //Movimiento Izquierda
                 {                                                                                       
                     rb.AddForce(Vector2.left * speed, ForceMode2D.Impulse);                             
 

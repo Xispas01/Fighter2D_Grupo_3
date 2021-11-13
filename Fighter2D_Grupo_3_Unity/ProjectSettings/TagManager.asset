@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Terrain
   layers:
   - Default
   - TransparentFX
@@ -11,12 +12,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Background
+  - Midground
+  - Terrain
+  - WallJump
+  - Player
+  - Frontground
   - 
   - 
   - 
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: MidGround
     uniqueID: 3152507509
+    locked: 0
+  - name: Terrain
+    uniqueID: 2956569897
     locked: 0
   - name: Player
     uniqueID: 20902541

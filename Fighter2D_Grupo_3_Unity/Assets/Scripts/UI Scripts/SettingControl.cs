@@ -19,17 +19,17 @@ public class SettingControl : MonoBehaviour
         return volume;
     }
 
-private void Start() {
+    private void Start() {
         width = Screen.width;
         height = Screen.height;
         Screen.SetResolution(width,height,fullscreen); 
     }
 
-    public void setAncho(int nuevo){
+    public void zSetAncho(int nuevo){
         width = nuevo;
     }
 
-    public void setAltura(int nuevo){
+    public void zSetAltura(int nuevo){
         height = nuevo;
     }
 

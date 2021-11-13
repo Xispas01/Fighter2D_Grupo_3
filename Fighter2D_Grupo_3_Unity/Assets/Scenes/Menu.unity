@@ -206,9 +206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879129}
-        m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
-        m_MethodName: setAncho
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetAncho
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -218,9 +218,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879129}
-        m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
-        m_MethodName: setAltura
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetAltura
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -230,9 +230,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879129}
-        m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
-        m_MethodName: setRes
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetRes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -363,9 +363,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: visible
+      - m_Target: {fileID: 1241107596}
+        m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 621629706}
@@ -375,9 +375,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: inVisible
+      - m_Target: {fileID: 1241107596}
+        m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1822485146}
@@ -598,10 +598,10 @@ RectTransform:
   m_Father: {fileID: 1281945634}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0, y: 56}
-  m_SizeDelta: {x: 267.0451, y: 66.8014}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -247}
+  m_SizeDelta: {x: 182.844, y: 90.513}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &148062591
 MonoBehaviour:
@@ -647,9 +647,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879130}
-        m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
-        m_MethodName: endGame
+      - m_Target: {fileID: 1241107596}
+        m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
+        m_MethodName: zEndGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1133,11 +1133,11 @@ RectTransform:
   m_Father: {fileID: 1281945634}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
-  m_SizeDelta: {x: 404.0782, y: 165.8078}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 239.99988}
+  m_SizeDelta: {x: 404.078, y: 151.229}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &485998049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1182,16 +1182,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879130}
+      - m_Target: {fileID: 1241107593}
         m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
-        m_MethodName: playGame
-        m_Mode: 1
+        m_MethodName: zSceneChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Game
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &485998050
@@ -1366,61 +1366,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496669007}
   m_CullTransparentMesh: 1
---- !u!114 &507879127 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1692974320191782630, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
-  m_PrefabInstance: {fileID: 1692974320422625329}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4979bf54ac25b4345bd0870e8ce481b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &507879129 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1692974320191782632, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
-  m_PrefabInstance: {fileID: 1692974320422625329}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a60d52f212188743b20752bf989e2bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &507879130 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1692974320191782635, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
-  m_PrefabInstance: {fileID: 1692974320422625329}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36e8a4469d54120479f95d790667da04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &507879131 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1692974320191782634, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
-  m_PrefabInstance: {fileID: 1692974320422625329}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de31c7a8df9ba8f468bd758b7cd8e3c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &507879132 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1692974320191782637, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
-  m_PrefabInstance: {fileID: 1692974320422625329}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d877948495e2d4d41a2d11b734f180eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &556265421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,9 +1449,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879129}
-        m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
-        m_MethodName: setAncho
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetAncho
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1516,9 +1461,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879129}
-        m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
-        m_MethodName: setAltura
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetAltura
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1528,9 +1473,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879129}
-        m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
-        m_MethodName: setRes
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetRes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1692,8 +1637,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.000011444092}
-  m_SizeDelta: {x: 336.1611, y: 79.3677}
+  m_AnchoredPosition: {x: 0, y: -5.279003}
+  m_SizeDelta: {x: 336.161, y: 88.558}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &717841911
 MonoBehaviour:
@@ -1739,9 +1684,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: inVisible
+      - m_Target: {fileID: 1241107596}
+        m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1281945631}
@@ -1751,9 +1696,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: visible
+      - m_Target: {fileID: 1241107596}
+        m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 621629706}
@@ -2063,9 +2008,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879132}
-        m_TargetAssemblyTypeName: VolumeControl, Assembly-CSharp
-        m_MethodName: PercentageValue
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetVolume
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1081375730}
@@ -2075,9 +2020,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879131}
+      - m_Target: {fileID: 1241107594}
         m_TargetAssemblyTypeName: SliderToPercentage, Assembly-CSharp
-        m_MethodName: PercentageValue
+        m_MethodName: zPercentageValue
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1081375730}
@@ -2087,9 +2032,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879131}
+      - m_Target: {fileID: 1241107594}
         m_TargetAssemblyTypeName: SliderToPercentage, Assembly-CSharp
-        m_MethodName: PercentageString
+        m_MethodName: zPercentageString
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2054109405}
@@ -2099,6 +2044,50 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1241107593 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4791229175088366556, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
+  m_PrefabInstance: {fileID: 4791229176039903061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e8a4469d54120479f95d790667da04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1241107594 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4791229175088366559, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
+  m_PrefabInstance: {fileID: 4791229176039903061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de31c7a8df9ba8f468bd758b7cd8e3c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1241107595 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4791229175088366558, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
+  m_PrefabInstance: {fileID: 4791229176039903061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80003f0069b8a7a40a23cca39ef9da1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1241107596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4791229175088366553, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
+  m_PrefabInstance: {fileID: 4791229176039903061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459457253466e864ba171b9da37bb177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1243701624
 GameObject:
   m_ObjectHideFlags: 0
@@ -2442,8 +2431,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -51.412388}
-  m_SizeDelta: {x: -1136.165, y: -308.4545}
+  m_AnchoredPosition: {x: 0, y: -51.325012}
+  m_SizeDelta: {x: -1136.769, y: -250.921}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1312566029
 GameObject:
@@ -2680,8 +2669,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0002203, y: -77.045}
-  m_SizeDelta: {x: 336.16, y: 49.277}
+  m_AnchoredPosition: {x: -6.5663, y: -77.045}
+  m_SizeDelta: {x: 323.03, y: 49.277}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1362100988
 MonoBehaviour:
@@ -2730,21 +2719,21 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879129}
-        m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
-        m_MethodName: setFull
-        m_Mode: 6
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetFullScreen
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1362100988}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 507879129}
-        m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
-        m_MethodName: setRes
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetRes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2754,7 +2743,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &1498181964
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,7 +3260,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1781187215
 GameObject:
@@ -3441,7 +3430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: 24.638}
+  m_AnchoredPosition: {x: -0.000015259, y: 22.722008}
   m_SizeDelta: {x: 206.419, y: 45.444}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1787445976
@@ -3913,9 +3902,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: visible
+      - m_Target: {fileID: 1241107596}
+        m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1281945631}
@@ -3925,9 +3914,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: inVisible
+      - m_Target: {fileID: 1241107596}
+        m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 621629706}
@@ -4058,9 +4047,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879129}
-        m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
-        m_MethodName: setAncho
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetAncho
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4070,9 +4059,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879129}
-        m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
-        m_MethodName: setAltura
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetAltura
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4082,9 +4071,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879129}
-        m_TargetAssemblyTypeName: ScreenSizer, Assembly-CSharp
-        m_MethodName: setRes
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetRes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4349,9 +4338,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: inVisible
+      - m_Target: {fileID: 1241107596}
+        m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 621629706}
@@ -4361,14 +4350,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 507879127}
-        m_TargetAssemblyTypeName: Menu_UI, Assembly-CSharp
-        m_MethodName: visible
+      - m_Target: {fileID: 1241107596}
+        m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
+        m_MethodName: zScreenChange
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1822485146}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 900
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1241107595}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetToggle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1362100988}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4411,64 +4412,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142774452}
   m_CullTransparentMesh: 1
---- !u!1001 &1692974320422625329
+--- !u!1001 &4791229176039903061
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1692974320191782631, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366546, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1692974320191782632, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1692974320191782633, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366552, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1692974320191782633, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366552, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1692974320191782633, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366552, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1692974320191782633, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366552, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1692974320191782633, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366552, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1692974320191782633, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366552, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1692974320191782633, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366552, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1692974320191782633, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366552, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1692974320191782633, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366552, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1692974320191782633, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366552, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1692974320191782633, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366552, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4c2acaba6f7c07b42858586411d66e58, type: 3}
+    - target: {fileID: 4791229175088366557, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4791229175088366557, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 3acf363ed59255f4a9c93c4f1299709f, type: 3}

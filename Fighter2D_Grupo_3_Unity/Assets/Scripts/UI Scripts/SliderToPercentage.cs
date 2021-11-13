@@ -8,11 +8,11 @@ public class SliderToPercentage : MonoBehaviour
 {
     private int v;
 
-    public void PercentageValue(Slider slide){
+    public void zPercentageValue(Slider slide){
         v = (int) (slide.value * 100);
     }
 
-    public void PercentageString(TextMeshProUGUI per){
+    public void zPercentageString(TextMeshProUGUI per){
         per.text = v + "%";
     }
 }
