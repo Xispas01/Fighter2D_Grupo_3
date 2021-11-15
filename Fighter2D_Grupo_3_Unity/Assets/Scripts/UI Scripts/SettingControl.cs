@@ -2,35 +2,129 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
+    [System.Serializable]
 public class SettingControl : MonoBehaviour
 {
-    private static float volume;
+    private static float musicV;
+    private static float sfxV;
 
+
+    public int i = 0;
+    public int timeConfirm = 0;
+    public List<int> widthList = new List<int>();
+    public List<int> heightList = new List<int>();
+    public List<int> refreshList = new List<int>();
+    public TextMeshProUGUI timer;
+    public TextMeshProUGUI resObj;
+    public int j = 0;
+    public bool contador = false;
+    public GameObject confirmOBJ;
+    public GameObject optionsOBJ;
+
+    public int width;
+    public int height;
+    public bool fullscreen = true;
     
-    public static int width = 900;
-    public static int height = 600;
-    public static bool fullscreen = true;
 
-    public void zSetVolume(Slider slide){
-        volume = slide.value;
+    public void zSetMusicV(Slider slide){
+        musicV = slide.value;
     }
-    public float zGetVolume(){
-        return volume;
+    public float zGetMusicV(){
+        return musicV;
+    }
+
+    public void zSetSfxV(Slider slide){
+        sfxV = slide.value;
+    }
+    public float zGetSfxV(){
+        return sfxV;
     }
 
     private void Start() {
-        width = Screen.width;
-        height = Screen.height;
+        Resolution[] resolutions = Screen.resolutions;
+
+        // Print the resolutions
+        foreach (var res in resolutions)
+        {
+            widthList.Add(res.width);
+            heightList.Add(res.height);
+            refreshList.Add(res.refreshRate);
+        }
+
+
+        i = widthList.Count/2;
+        width = widthList[i];
+        height = heightList[i];
+        
+        resObj.text = widthList[i] + "x" + heightList[i];  
         Screen.SetResolution(width,height,fullscreen); 
     }
 
-    public void zSetAncho(int nuevo){
-        width = nuevo;
+    public void zSiguienteRes(){
+        i++;
+        if(i > widthList.Count - 1){
+            i = 0;
+        }
+        resObj.text = widthList[i] + "x" + heightList[i];  
     }
 
-    public void zSetAltura(int nuevo){
-        height = nuevo;
+    public void zAnteriorRes(){
+        i--;
+        if(i < 0){
+            i = widthList.Count - 1;
+        }
+        resObj.text = widthList[i] + "x" + heightList[i];  
+    }
+
+    public void zApplyRes(int timeCon){
+        Screen.SetResolution(widthList[i],heightList[i],fullscreen);
+        timeConfirm = timeCon;
+        contador = true;
+        timer.text ="" + timeConfirm;   
+        ConfirmSpawn(confirmOBJ);
+        ConfirmSpawn(optionsOBJ);
+        StartCoroutine("ResCountDown");
+    }
+
+    private void Update() {
+        if(contador == true){
+            timer.text ="" + j;   
+        }
+    }
+
+    private void ConfirmSpawn(GameObject target){
+        target.SetActive(!target.activeSelf);
+    }
+
+    IEnumerator ResCountDown(){
+        for(j = timeConfirm;j>=0;j--){
+            yield return new WaitForSeconds(1f);
+            if (j == 0){
+                Screen.SetResolution(width,height,fullscreen);
+                ConfirmSpawn(confirmOBJ);
+                ConfirmSpawn(optionsOBJ);
+                break;
+            }
+        }
+    }
+
+    public void zConfirmRes(){
+        StopCoroutine("ResCountDown");        
+        ConfirmSpawn(confirmOBJ);
+        ConfirmSpawn(optionsOBJ);
+        contador = false;
+        width = widthList[i];
+        height = heightList[i];
+    }
+
+    public void zCancelRes(){
+        StopCoroutine("ResCountDown");   
+        ConfirmSpawn(confirmOBJ);
+        ConfirmSpawn(optionsOBJ);
+        contador = false;
+        Screen.SetResolution(width,height,fullscreen);
     }
 
     public void zSetToggle(Toggle t){
@@ -47,9 +141,5 @@ public class SettingControl : MonoBehaviour
         }else{
             fullscreen = false;
         }
-    }
-        
-    public void zSetRes(){
-        Screen.SetResolution(width,height,fullscreen);
     }
 }
