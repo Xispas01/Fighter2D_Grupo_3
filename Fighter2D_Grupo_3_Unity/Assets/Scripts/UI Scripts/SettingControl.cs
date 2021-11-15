@@ -11,7 +11,7 @@ public class SettingControl : MonoBehaviour
     private static float sfxV;
 
 
-    public int i = 0;
+    public static int i = 0;
     public int timeConfirm = 0;
     public List<int> widthList = new List<int>();
     public List<int> heightList = new List<int>();
@@ -23,9 +23,9 @@ public class SettingControl : MonoBehaviour
     public GameObject confirmOBJ;
     public GameObject optionsOBJ;
 
-    public int width;
-    public int height;
-    public bool fullscreen = true;
+    public static int width;
+    public static int height;
+    public static bool fullscreen = true;
     
 
     public void zSetMusicV(Slider slide){
@@ -53,8 +53,6 @@ public class SettingControl : MonoBehaviour
             refreshList.Add(res.refreshRate);
         }
 
-
-        i = widthList.Count/2;
         width = widthList[i];
         height = heightList[i];
         
