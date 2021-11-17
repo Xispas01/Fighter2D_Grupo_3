@@ -34,6 +34,9 @@ public class PlayerMovementSwapkey : MonoBehaviour
 
     private Rigidbody2D rb;                                                                             //CuerpoRigido (Fisicas basada en fuerza y gravedad)
 
+    
+    public float v;
+
 
     void Start()                                                                                        //Inicio Start()
     {                   
@@ -55,6 +58,8 @@ public class PlayerMovementSwapkey : MonoBehaviour
             }
         }
 
+        v  = SettingControl.sfxV;
+
         ground = LayerMask.GetMask("Terrain","WallJump","Empujable");                                   //Asigna valor a las mascaras de RayCast
         wall = LayerMask.GetMask("Terrain","WallJump");                                                 //Asigna valor a las mascaras de RayCast
         wallJump = LayerMask.GetMask("WallJump");                                                       //Asigna valor a las mascaras de RayCast
@@ -73,6 +78,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
                 jumpsN = 0;                                                                             //Reinicia AirJumps
                 if (Input.GetKeyDown(keys["Jump"]))                                                     
                 {
+                    PlaySFX("JumpSFX");
                     rb.AddForce(Vector3.up * jump);                                                     
                 }
             }else if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, wallJump) != null)             //Revisa BoxCast a muro Walljump
@@ -86,6 +92,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
 
                 if (Input.GetKeyDown(keys["Jump"]))                                                     
                 {
+                    PlaySFX("WallJumpSFX");
                     aux2D = rb.velocity;                                                                  
                     rb.velocity = new Vector2(aux2D.x,0f);                                                
                     rb.AddForce(Vector3.up * jump + Vector3.left * Wj);                                 //Salta con fuerza lateral extra
@@ -102,6 +109,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
 
                 if (Input.GetKeyDown(keys["Jump"]))                                                     
                 {
+                    PlaySFX("WallJumpSFX");
                     aux2D = rb.velocity;                                                                  
                     rb.velocity = new Vector2(aux2D.x,0f);                                                
                     rb.AddForce(Vector3.up * jump + Vector3.right * Wj);                                //Salta con fuerza lateral extra
@@ -110,6 +118,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
                 }
             } else if (Input.GetKeyDown(keys["Jump"]) && jumpsN < jumpsMax)                             //Revisa limite de AirJumps
             {
+                PlaySFX("AirJumpSFX");
                 aux2D = rb.velocity;                                                                    //Reinicia velocidad vertical antes de saltar
                 rb.velocity = new Vector2(aux2D.x,0f);                                                  //Reinicia velocidad vertical antes de saltar
                 rb.AddForce(Vector3.up * jump);                                                         
@@ -162,6 +171,11 @@ public class PlayerMovementSwapkey : MonoBehaviour
                 rb.velocity = new Vector2(0.0f, aux2D.y);                                                 
             }
         }
+    }
+
+    private void PlaySFX(string name){
+        float v = SettingControl.sfxV;
+        FindObjectOfType<AudioManager>().Play(name, v);
     }
 
     IEnumerator WallJumpCD() {                                                                          //Cooldown control WallJump

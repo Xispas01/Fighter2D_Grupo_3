@@ -688,6 +688,7 @@ MonoBehaviour:
   limSuelo: {x: 0.5, y: 0}
   limLado: {x: 0, y: 0.5}
   player: 1
+  v: 0
 --- !u!114 &508648812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1554,6 +1555,7 @@ MonoBehaviour:
   limSuelo: {x: 0.5, y: 0}
   limLado: {x: 0, y: 0.5}
   player: 2
+  v: 0
 --- !u!114 &905455360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,7 +1700,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &920868809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3851,6 +3853,65 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1926784254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1926784256}
+  - component: {fileID: 1926784255}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1926784255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926784254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c25057f390c614faa8c473c74ffb6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: JumpSFX
+    clip: {fileID: 8300000, guid: 4a515ff8f04d2484ea75da6508d2c3d9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: AirJumpSFX
+    clip: {fileID: 8300000, guid: 36839d1c34989624f94c7caf28c9854e, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: WallJumpSFX
+    clip: {fileID: 8300000, guid: 78e91024f6419154da460bbec3742b1b, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+--- !u!4 &1926784256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926784254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1931649467
 GameObject:
   m_ObjectHideFlags: 0

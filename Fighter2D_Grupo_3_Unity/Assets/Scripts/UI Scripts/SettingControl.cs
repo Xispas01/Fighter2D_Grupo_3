@@ -7,16 +7,16 @@ using TMPro;
     [System.Serializable]
 public class SettingControl : MonoBehaviour
 {
-    private static float musicV;
-    private static float sfxV;
+    public static float musicV = 1;
+    public static float sfxV = 1;
 
 
     public static int resol = 0;
     public static bool full = true;
 
-    public int j = 0;
-    public bool contador = false;
-    public int timeConfirm = 0;
+    private int j = 0;
+    private bool contador = false;
+    private int timeConfirm = 0;
 
     private List<int> widthList = new List<int>();
     private List<int> heightList = new List<int>();
@@ -141,6 +141,14 @@ public class SettingControl : MonoBehaviour
         }else{
             t.isOn = false;
         }
+    }
+
+    public void zSetSfxSlider(Slider sl){
+        sl.value = sfxV;
+    }
+    
+    public void zSetMusicSlider(Slider sl){
+        sl.value = musicV;
     }
 
     public void zSetFullScreen(Toggle t){

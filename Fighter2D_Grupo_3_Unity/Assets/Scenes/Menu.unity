@@ -560,7 +560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 730, y: -170.22314}
+  m_AnchoredPosition: {x: 730, y: -170.18546}
   m_SizeDelta: {x: 1460, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &64755073
@@ -3931,6 +3931,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1511480096}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetSfxSlider
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1902879926}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1511480096}
+        m_TargetAssemblyTypeName: SettingControl, Assembly-CSharp
+        m_MethodName: zSetMusicSlider
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1081375730}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &717841912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4820,7 +4844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 730, y: -570.89264}
+  m_AnchoredPosition: {x: 730, y: -570.7418}
   m_SizeDelta: {x: 1460, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1028969822
@@ -4990,7 +5014,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 730, y: -691.1158}
+  m_AnchoredPosition: {x: 730, y: -690.92725}
   m_SizeDelta: {x: 1460, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1053537092
@@ -8324,7 +8348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 730, y: -440.66946}
+  m_AnchoredPosition: {x: 730, y: -440.55637}
   m_SizeDelta: {x: 1460, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1569179329
@@ -10570,7 +10594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 730, y: -300.4463}
+  m_AnchoredPosition: {x: 730, y: -300.3709}
   m_SizeDelta: {x: 1460, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2055759041
