@@ -128,7 +128,8 @@ public class PlayerMovementSwapkey : MonoBehaviour
             if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, wall) == null)                       //Evita aplicar fuerza contra un muro
             {                                                                                           
                 if (Input.GetKey(keys["Right"]))                                                        //Movimiento Derecha
-                {                                                                                       
+                {                          
+                    PlaySFX("WalkSFX");                                                             
                     rb.AddForce(Vector2.right * speed, ForceMode2D.Impulse);                            
 
                     if (rb.velocity.x >= speedLimit)                                                    //Limitacion de velocidad

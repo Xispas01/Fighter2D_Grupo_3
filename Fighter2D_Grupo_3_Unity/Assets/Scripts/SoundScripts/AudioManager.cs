@@ -18,7 +18,12 @@ public class AudioManager : MonoBehaviour{
 
     public void Play(string name, float v){
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        s.source.volume = v;
-        s.source.Play();
+        if(s != null){
+            Debug.Log("Reproduce" + name);
+            s.source.volume = v;
+            s.source.Play();
+        }else{
+            Debug.Log("NO existe" + name);
+        }
     }
 }
