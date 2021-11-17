@@ -11,15 +11,21 @@ public class SettingControl : MonoBehaviour
     private static float sfxV;
 
 
-    public static int i = 0;
-    public int timeConfirm = 0;
-    public List<int> widthList = new List<int>();
-    public List<int> heightList = new List<int>();
-    public List<int> refreshList = new List<int>();
-    public TextMeshProUGUI timer;
-    public TextMeshProUGUI resObj;
+    public static int resol = 0;
+    public static bool full = true;
+
     public int j = 0;
     public bool contador = false;
+    public int timeConfirm = 0;
+
+    private List<int> widthList = new List<int>();
+    private List<int> heightList = new List<int>();
+    private List<int> refreshList = new List<int>();
+
+    public TextMeshProUGUI timer;
+    public TextMeshProUGUI resObj;
+
+
     public GameObject confirmOBJ;
     public GameObject optionsOBJ;
 
@@ -27,6 +33,10 @@ public class SettingControl : MonoBehaviour
     public static int height;
     public static bool fullscreen = true;
     
+    void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 
     public void zSetMusicV(Slider slide){
         musicV = slide.value;
@@ -53,31 +63,32 @@ public class SettingControl : MonoBehaviour
             refreshList.Add(res.refreshRate);
         }
 
-        width = widthList[i];
-        height = heightList[i];
+        width = widthList[resol];
+        height = heightList[resol];
         
-        resObj.text = widthList[i] + "x" + heightList[i];  
+        resObj.text = widthList[resol] + "x" + heightList[resol];
+
         Screen.SetResolution(width,height,fullscreen); 
     }
 
     public void zSiguienteRes(){
-        i++;
-        if(i > widthList.Count - 1){
-            i = 0;
+        resol++;
+        if(resol > widthList.Count - 1){
+            resol = 0;
         }
-        resObj.text = widthList[i] + "x" + heightList[i];  
+        resObj.text = widthList[resol] + "x" + heightList[resol];  
     }
 
     public void zAnteriorRes(){
-        i--;
-        if(i < 0){
-            i = widthList.Count - 1;
+        resol--;
+        if(resol < 0){
+            resol = widthList.Count - 1;
         }
-        resObj.text = widthList[i] + "x" + heightList[i];  
+        resObj.text = widthList[resol] + "x" + heightList[resol];  
     }
 
     public void zApplyRes(int timeCon){
-        Screen.SetResolution(widthList[i],heightList[i],fullscreen);
+        Screen.SetResolution(widthList[resol],heightList[resol],full);
         timeConfirm = timeCon;
         contador = true;
         timer.text ="" + timeConfirm;   
@@ -100,9 +111,7 @@ public class SettingControl : MonoBehaviour
         for(j = timeConfirm;j>=0;j--){
             yield return new WaitForSeconds(1f);
             if (j == 0){
-                Screen.SetResolution(width,height,fullscreen);
-                ConfirmSpawn(confirmOBJ);
-                ConfirmSpawn(optionsOBJ);
+                zCancelRes();
                 break;
             }
         }
@@ -113,8 +122,9 @@ public class SettingControl : MonoBehaviour
         ConfirmSpawn(confirmOBJ);
         ConfirmSpawn(optionsOBJ);
         contador = false;
-        width = widthList[i];
-        height = heightList[i];
+        width = widthList[resol];
+        height = heightList[resol];
+        fullscreen = full;
     }
 
     public void zCancelRes(){
@@ -135,9 +145,9 @@ public class SettingControl : MonoBehaviour
 
     public void zSetFullScreen(Toggle t){
         if (t.isOn){
-            fullscreen = true;
+            full = true;
         }else{
-            fullscreen = false;
+            full = false;
         }
     }
 }

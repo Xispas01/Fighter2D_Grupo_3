@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_movement : MonoBehaviour
+public class PlayerMovementSwapkey : MonoBehaviour
 {
     //variables                                                                                 
     public float jump = 400.0f;                                                                         //Fuerza de salto
     public float speed = 2.0f;                                                                          //Fuerza de movimiento
     public float speedLimit = 5.0f;                                                                     //Limite de velocidad
-    public float Wj = 200.0f;                                                                           //Fuerza lateral de WallJump
+    public float Wj = 300.0f;                                                                           //Fuerza lateral de WallJump
 
     public Transform pies;                                                                              //Ubicacion Pies
     public Transform ladoD;                                                                             //Ubicacion lado Derecho
@@ -16,9 +16,6 @@ public class Player_movement : MonoBehaviour
     public int jumpsMax = 1;                                                                            //Maximos AirJumps
     int jumpsN;                                                                                         //AirJumps actuales
 
-    public Vector2 StartingPosition;
-    public bool touchCheckpoint;
-    public GameObject lastCheckpoint;
 
     public Vector2 limSuelo = new Vector2(0.5f, 0f);                                                    //Tamaños de boxcast Techo/suelo
     public Vector2 limLado = new Vector2(0f, 0.5f);                                                     //Tamaños de boxcast Lados
@@ -31,8 +28,9 @@ public class Player_movement : MonoBehaviour
 
     private Vector2 aux2D;                                                                              //Vector 2D auxiliar
 
-
     Dictionary<string,KeyCode> keys = new Dictionary<string, KeyCode>();                                //Diccionario para controles configurables
+
+    public int player;
 
     private Rigidbody2D rb;                                                                             //CuerpoRigido (Fisicas basada en fuerza y gravedad)
 
@@ -41,10 +39,21 @@ public class Player_movement : MonoBehaviour
     {                   
         rb = gameObject.GetComponent<Rigidbody2D>();                                                    //Asigna el CuerpoRigido del objeto
 
-        //Asignacion controles default                  
-        keys.Add("Left", KeyCode.A);                                                                    //Asigna a la palabra "Left" la tecla (KeyCode) A
-        keys.Add("Right", KeyCode.D);                                                                   //Asigna a la palabra "Right" la tecla (KeyCode) D
-        keys.Add("Jump", KeyCode.Space);                                                                //Asigna a la palabra "Jump" la tecla (KeyCode) Space
+        //Asignacion controles default              
+        switch(player){                                                                                 //Asigna las letras configuradas para cada player a cada accion
+            case 1:{
+                keys.Add("Left", ButtonSwap.keys["LeftA"]);
+                keys.Add("Right", ButtonSwap.keys["RightA"]);                                             
+                keys.Add("Jump", ButtonSwap.keys["JumpA"]);                                               
+                break;
+            }
+            case 2:{
+                keys.Add("Left", ButtonSwap.keys["LeftB"]);                                               
+                keys.Add("Right", ButtonSwap.keys["RightB"]);                                             
+                keys.Add("Jump", ButtonSwap.keys["JumpB"]);                                               
+                break;
+            }
+        }
 
         ground = LayerMask.GetMask("Terrain","WallJump","Empujable");                                   //Asigna valor a las mascaras de RayCast
         wall = LayerMask.GetMask("Terrain","WallJump");                                                 //Asigna valor a las mascaras de RayCast
