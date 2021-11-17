@@ -102,11 +102,7 @@ public class SettingControl : MonoBehaviour
             timer.text ="" + j;   
         }
     }
-
-    private void ConfirmSpawn(GameObject target){
-        target.SetActive(!target.activeSelf);
-    }
-
+    
     IEnumerator ResCountDown(){
         for(j = timeConfirm;j>=0;j--){
             yield return new WaitForSeconds(1f);
@@ -116,6 +112,11 @@ public class SettingControl : MonoBehaviour
             }
         }
     }
+
+    private void ConfirmSpawn(GameObject target){
+        target.SetActive(!target.activeSelf);
+    }
+
 
     public void zConfirmRes(){
         StopCoroutine("ResCountDown");        

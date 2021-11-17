@@ -83,7 +83,6 @@ public class PlayerMovementSwapkey : MonoBehaviour
                 }
             }else if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, wallJump) != null)             //Revisa BoxCast a muro Walljump
             {
-                
                 aux2D = rb.velocity;                                                                      
                 if(aux2D.y <= -3f)                                                                      //Reinicia velocidad de caida a 3 si va a caer(Efecto deslizar pared)
                 {
@@ -128,8 +127,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
             if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, wall) == null)                       //Evita aplicar fuerza contra un muro
             {                                                                                           
                 if (Input.GetKey(keys["Right"]))                                                        //Movimiento Derecha
-                {                          
-                    PlaySFX("WalkSFX");                                                             
+                {                                                                                 
                     rb.AddForce(Vector2.right * speed, ForceMode2D.Impulse);                            
 
                     if (rb.velocity.x >= speedLimit)                                                    //Limitacion de velocidad
