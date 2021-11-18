@@ -25,9 +25,8 @@ public class PlayerMovementSwapkey : MonoBehaviour
     private int wallJump;                                                                               //Mascaras para raycast
 
     private bool canControl = true;                                                                     //Cooldown Control WallJump (Sirve para ser lanzado sin control)
-
-    public bool faceLeft = false; 
-    private SpriteRenderer sprite;
+    
+    private SpriteRenderer sprite;                                                                      //Permite flipear el personaje a la direccion que se esta moviendo
 
     private Vector2 aux2D;                                                                              //Vector 2D auxiliar
 
@@ -82,7 +81,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
                 }
             }else if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, wallJump) != null)             //Revisa BoxCast a muro Walljump
             {
-                if(!sprite.flipX){
+                if(!sprite.flipX){                                                                      //Flipea el personaje a la direccion contraria de la pared en la que se desliza
                     sprite.flipX = true;
                 } 
 
@@ -103,7 +102,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
                 }
             }else if(Physics2D.OverlapBox(ladoI.position, limLado, 0.0f, wallJump) != null)             //Revisa BoxCast a muro Walljump
             {
-                if(sprite.flipX){
+                if(sprite.flipX){                                                                       //Flipea el personaje a la direccion contraria de la pared en la que se desliza
                     sprite.flipX = false;
                 } 
 
@@ -136,7 +135,8 @@ public class PlayerMovementSwapkey : MonoBehaviour
                 if (Input.GetKey(keys["Right"]))                                                        //Movimiento Derecha
                 {                                                                                 
                     rb.AddForce(Vector2.right * speed, ForceMode2D.Impulse);
-                    if(sprite.flipX){
+                    
+                    if(sprite.flipX){                                                                   //Flipea el personaje a la direccion que va a moverse
                         sprite.flipX = false;
                     }
 
@@ -158,7 +158,8 @@ public class PlayerMovementSwapkey : MonoBehaviour
                 if (Input.GetKey(keys["Left"]))                                                         //Movimiento Izquierda
                 {                                                                                       
                     rb.AddForce(Vector2.left * speed, ForceMode2D.Impulse);     
-                    if(!sprite.flipX){
+
+                    if(!sprite.flipX){                                                                  //Flipea el personaje a la direccion que va a moverse
                         sprite.flipX = true;
                     }                      
 
