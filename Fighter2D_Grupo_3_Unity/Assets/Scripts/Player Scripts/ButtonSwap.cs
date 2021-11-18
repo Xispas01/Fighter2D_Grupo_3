@@ -7,8 +7,6 @@ using TMPro;
 
 public class ButtonSwap : MonoBehaviour
 {
-    public static Dictionary<string, KeyCode> keys = new Dictionary<string, KeyCode>();
-
     public TextMeshProUGUI JumpP1, LeftP1, RightP1;
     public TextMeshProUGUI JumpP2, LeftP2, RightP2;
 
@@ -19,52 +17,48 @@ public class ButtonSwap : MonoBehaviour
     private Color32 selected = new Color32(239, 116, 36, 255);
 
 
-    void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
-
     // Use this for initialization
     void Start () {
-        keys.Add("JumpA", KeyCode.W);
-        keys.Add("LeftA", KeyCode.A);
-        keys.Add("RightA", KeyCode.D);
+        if (SettingsSaving.isFirstRun){
+            SettingsSaving.keys.Add("JumpA", KeyCode.W);
+            SettingsSaving.keys.Add("LeftA", KeyCode.A);
+            SettingsSaving.keys.Add("RightA", KeyCode.D);
 
-        keys.Add("JumpB", KeyCode.UpArrow);
-        keys.Add("LeftB", KeyCode.LeftArrow);
-        keys.Add("RightB", KeyCode.RightArrow);
+            SettingsSaving.keys.Add("JumpB", KeyCode.UpArrow);
+            SettingsSaving.keys.Add("LeftB", KeyCode.LeftArrow);
+            SettingsSaving.keys.Add("RightB", KeyCode.RightArrow);
+        }
 
+        JumpP1.text = SettingsSaving.keys["JumpA"].ToString();
+        LeftP1.text = SettingsSaving.keys["LeftA"].ToString();
+        RightP1.text = SettingsSaving.keys["RightA"].ToString();
 
-        JumpP1.text = keys["JumpA"].ToString();
-        LeftP1.text = keys["LeftA"].ToString();
-        RightP1.text = keys["RightA"].ToString();
-
-        JumpP2.text = keys["JumpB"].ToString();
-        LeftP2.text = keys["LeftB"].ToString();
-        RightP2.text = keys["RightB"].ToString();
-
+        JumpP2.text = SettingsSaving.keys["JumpB"].ToString();
+        LeftP2.text = SettingsSaving.keys["LeftB"].ToString();
+        RightP2.text = SettingsSaving.keys["RightB"].ToString();
+        
     }
     
     
     public void defaultButton()
     {
 
-        keys["JumpA"] = KeyCode.W;
-        keys["LeftA"] = KeyCode.A;
-        keys["RightA"] = KeyCode.D;
+        SettingsSaving.keys["JumpA"] = KeyCode.W;
+        SettingsSaving.keys["LeftA"] = KeyCode.A;
+        SettingsSaving.keys["RightA"] = KeyCode.D;
         
-        keys["JumpB"] = KeyCode.UpArrow;
-        keys["LeftB"] = KeyCode.LeftArrow;
-        keys["RightB"] = KeyCode.RightArrow;
+        SettingsSaving.keys["JumpB"] = KeyCode.UpArrow;
+        SettingsSaving.keys["LeftB"] = KeyCode.LeftArrow;
+        SettingsSaving.keys["RightB"] = KeyCode.RightArrow;
 
 
-        JumpP1.text = keys["JumpA"].ToString();
-        LeftP1.text = keys["LeftA"].ToString();
-        RightP1.text = keys["RightA"].ToString();
+        JumpP1.text = SettingsSaving.keys["JumpA"].ToString();
+        LeftP1.text = SettingsSaving.keys["LeftA"].ToString();
+        RightP1.text = SettingsSaving.keys["RightA"].ToString();
         
-        JumpP2.text = keys["JumpB"].ToString();
-        LeftP2.text = keys["LeftB"].ToString();
-        RightP2.text = keys["RightB"].ToString();
+        JumpP2.text = SettingsSaving.keys["JumpB"].ToString();
+        LeftP2.text = SettingsSaving.keys["LeftB"].ToString();
+        RightP2.text = SettingsSaving.keys["RightB"].ToString();
 
     }
 
@@ -73,18 +67,18 @@ public class ButtonSwap : MonoBehaviour
             Event e = Event.current;
             if(e.isKey){
                 bool used = false;
-                foreach (var k in keys.Values){//Revision repeticion de input
+                foreach (var k in SettingsSaving.keys.Values){//Revision repeticion de input
                     if(k == e.keyCode){
                         used = true;
                     }
                 }
                 if (used == false){//Sistema anti repeticion de input
-                    keys[currentKey.name] = e.keyCode;
+                    SettingsSaving.keys[currentKey.name] = e.keyCode;
                     currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
                     currentKey.GetComponent<Image>().color = normal;
                     currentKey = null;
                 }else{
-                    keys[currentKey.name] = keys[currentKey.name];
+                    SettingsSaving.keys[currentKey.name] = SettingsSaving.keys[currentKey.name];
                     currentKey.GetComponent<Image>().color = normal;
                     currentKey = null;
                 }

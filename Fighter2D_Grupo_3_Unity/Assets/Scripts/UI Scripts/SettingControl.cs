@@ -7,16 +7,10 @@ using TMPro;
     [System.Serializable]
 public class SettingControl : MonoBehaviour
 {
-    public static float musicV = 1;
-    public static float sfxV = 1;
 
-
-    public static int resol = 0;
-    public static bool full = true;
-
-    private int j = 0;
-    private bool contador = false;
-    private int timeConfirm = 0;
+    public int j = 0;
+    public bool contador = false;
+    public int timeConfirm = 0;
 
     private List<int> widthList = new List<int>();
     private List<int> heightList = new List<int>();
@@ -29,66 +23,55 @@ public class SettingControl : MonoBehaviour
     public GameObject confirmOBJ;
     public GameObject optionsOBJ;
 
-    public static int width;
-    public static int height;
-    public static bool fullscreen = true;
-    
-    void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
 
     public void zSetMusicV(Slider slide){
-        musicV = slide.value;
-    }
-    public float zGetMusicV(){
-        return musicV;
+        SettingsSaving.musicV = slide.value;
     }
 
     public void zSetSfxV(Slider slide){
-        sfxV = slide.value;
-    }
-    public float zGetSfxV(){
-        return sfxV;
+        SettingsSaving.sfxV = slide.value;
     }
 
     private void Start() {
-        Resolution[] resolutions = Screen.resolutions;
+        if (SettingsSaving.isFirstRun){
+            Resolution[] resolutions = Screen.resolutions;
 
-        // Print the resolutions
-        foreach (var res in resolutions)
-        {
-            widthList.Add(res.width);
-            heightList.Add(res.height);
-            refreshList.Add(res.refreshRate);
+            // Print the resolutions
+            foreach (var res in resolutions)
+            {
+                SettingsSaving.widthList.Add(res.width);
+                SettingsSaving.heightList.Add(res.height);
+                SettingsSaving.refreshList.Add(res.refreshRate);
+            }
+
+            SettingsSaving.i = SettingsSaving.widthList.Count - 1;
+
+            SettingsSaving.width = SettingsSaving.widthList[SettingsSaving.i];
+            SettingsSaving.height = SettingsSaving.heightList[SettingsSaving.i];
+
+            resObj.text = SettingsSaving.widthList[SettingsSaving.i] + "x" + SettingsSaving.heightList[SettingsSaving.i];  
+            Screen.SetResolution(SettingsSaving.width, SettingsSaving.height, SettingsSaving.fullscreen); 
         }
-
-        width = widthList[resol];
-        height = heightList[resol];
-        
-        resObj.text = widthList[resol] + "x" + heightList[resol];
-
-        Screen.SetResolution(width,height,fullscreen); 
     }
 
     public void zSiguienteRes(){
-        resol++;
-        if(resol > widthList.Count - 1){
-            resol = 0;
+        SettingsSaving.i++;
+        if(SettingsSaving.i > SettingsSaving.widthList.Count - 1){
+            SettingsSaving.i = 0;
         }
-        resObj.text = widthList[resol] + "x" + heightList[resol];  
+        resObj.text = SettingsSaving.widthList[SettingsSaving.i] + "x" + SettingsSaving.heightList[SettingsSaving.i];  
     }
 
     public void zAnteriorRes(){
-        resol--;
-        if(resol < 0){
-            resol = widthList.Count - 1;
+        SettingsSaving.i--;
+        if(SettingsSaving.i < 0){
+            SettingsSaving.i = SettingsSaving.widthList.Count - 1;
         }
-        resObj.text = widthList[resol] + "x" + heightList[resol];  
+        resObj.text = SettingsSaving.widthList[SettingsSaving.i] + "x" + SettingsSaving.heightList[SettingsSaving.i];  
     }
 
     public void zApplyRes(int timeCon){
-        Screen.SetResolution(widthList[resol],heightList[resol],full);
+        Screen.SetResolution(SettingsSaving.widthList[SettingsSaving.i], SettingsSaving.heightList[SettingsSaving.i], SettingsSaving.fullscreen);
         timeConfirm = timeCon;
         contador = true;
         timer.text ="" + timeConfirm;   
@@ -102,30 +85,30 @@ public class SettingControl : MonoBehaviour
             timer.text ="" + j;   
         }
     }
-    
-    IEnumerator ResCountDown(){
-        for(j = timeConfirm;j>=0;j--){
-            yield return new WaitForSeconds(1f);
-            if (j == 0){
-                zCancelRes();
-                break;
-            }
-        }
-    }
 
     private void ConfirmSpawn(GameObject target){
         target.SetActive(!target.activeSelf);
     }
 
+    IEnumerator ResCountDown(){
+        for(j = timeConfirm;j>=0;j--){
+            yield return new WaitForSeconds(1f);
+            if (j == 0){
+                Screen.SetResolution(SettingsSaving.width, SettingsSaving.height, SettingsSaving.fullscreen);
+                ConfirmSpawn(confirmOBJ);
+                ConfirmSpawn(optionsOBJ);
+                break;
+            }
+        }
+    }
 
     public void zConfirmRes(){
         StopCoroutine("ResCountDown");        
         ConfirmSpawn(confirmOBJ);
         ConfirmSpawn(optionsOBJ);
         contador = false;
-        width = widthList[resol];
-        height = heightList[resol];
-        fullscreen = full;
+        SettingsSaving.width = SettingsSaving.widthList[SettingsSaving.i];
+        SettingsSaving.height = SettingsSaving.heightList[SettingsSaving.i];
     }
 
     public void zCancelRes(){
@@ -133,30 +116,22 @@ public class SettingControl : MonoBehaviour
         ConfirmSpawn(confirmOBJ);
         ConfirmSpawn(optionsOBJ);
         contador = false;
-        Screen.SetResolution(width,height,fullscreen);
+        Screen.SetResolution(SettingsSaving.width, SettingsSaving.height, SettingsSaving.fullscreen);
     }
 
     public void zSetToggle(Toggle t){
-        if (fullscreen){
+        if (SettingsSaving.fullscreen){
             t.isOn = true;
         }else{
             t.isOn = false;
         }
     }
 
-    public void zSetSfxSlider(Slider sl){
-        sl.value = sfxV;
-    }
-    
-    public void zSetMusicSlider(Slider sl){
-        sl.value = musicV;
-    }
-
     public void zSetFullScreen(Toggle t){
         if (t.isOn){
-            full = true;
+            SettingsSaving.fullscreen = true;
         }else{
-            full = false;
+            SettingsSaving.fullscreen = false;
         }
     }
 }

@@ -37,32 +37,27 @@ public class PlayerMovementSwapkey : MonoBehaviour
 
     private Rigidbody2D rb;                                                                             //CuerpoRigido (Fisicas basada en fuerza y gravedad)
 
-    
-    public float v;
-
 
     void Start()                                                                                        //Inicio Start()
     {                   
         rb = gameObject.GetComponent<Rigidbody2D>();                                                    //Asigna el CuerpoRigido del objeto
         sprite =gameObject.GetComponent<SpriteRenderer>(); 
 
-        //Asignacion controles default              
+        //Asignacion controles
         switch(player){                                                                                 //Asigna las letras configuradas para cada player a cada accion
             case 1:{
-                keys.Add("Left", ButtonSwap.keys["LeftA"]);
-                keys.Add("Right", ButtonSwap.keys["RightA"]);                                             
-                keys.Add("Jump", ButtonSwap.keys["JumpA"]);                                               
+                keys.Add("Left", SettingsSaving.keys["LeftA"]);
+                keys.Add("Right", SettingsSaving.keys["RightA"]);                                             
+                keys.Add("Jump", SettingsSaving.keys["JumpA"]);                                               
                 break;
             }
             case 2:{
-                keys.Add("Left", ButtonSwap.keys["LeftB"]);                                               
-                keys.Add("Right", ButtonSwap.keys["RightB"]);                                             
-                keys.Add("Jump", ButtonSwap.keys["JumpB"]);                                               
+                keys.Add("Left", SettingsSaving.keys["LeftB"]);                                               
+                keys.Add("Right", SettingsSaving.keys["RightB"]);                                             
+                keys.Add("Jump", SettingsSaving.keys["JumpB"]);                                               
                 break;
             }
         }
-
-        v  = SettingControl.sfxV;
 
         ground = LayerMask.GetMask("Terrain","WallJump","Empujable");                                   //Asigna valor a las mascaras de RayCast
         wall = LayerMask.GetMask("Terrain","WallJump");                                                 //Asigna valor a las mascaras de RayCast
@@ -191,7 +186,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
     }
 
     private void PlaySFX(string name){
-        float v = SettingControl.sfxV;
+        float v = SettingsSaving.sfxV;
         FindObjectOfType<AudioManager>().Play(name, v);
     }
 
