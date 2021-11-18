@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DamageStore : MonoBehaviour
 {
-
+    //poniendo esto "" justo encima le asignas un rango
     [SerializeField] float storedDamage;
     public int storedDamageLimit;
     public float lightness; //(Ligereza) Lightness es un multiplicador para calcular cuanto te mueve un ataque
-    [SerializeField] float lightnessBase; //El mínimo de este multiplicador: Teóricamente, el valor de Lightness para un 0% de dañoAcumulado
-    [SerializeField] float storedDamageInfluenceOnLightness; //El multiplicador usado a la hora de calcular la Lightness del personaje con respecto a cuanto daño ha acumulado
-    //¿Por que usamos getset y Serializefield en vez de ponerlas en public? Para asegurar que se ejecuta el código de los getset ANTES de obtener los valores de storedDamage y lightness
+    [SerializeField] float lightnessBase; //El mï¿½nimo de este multiplicador: Teï¿½ricamente, el valor de Lightness para un 0% de daï¿½oAcumulado
+    [SerializeField] float storedDamageInfluenceOnLightness; //El multiplicador usado a la hora de calcular la Lightness del personaje con respecto a cuanto daï¿½o ha acumulado
+    //ï¿½Por que usamos getset y Serializefield en vez de ponerlas en public? Para asegurar que se ejecuta el cï¿½digo de los getset ANTES de obtener los valores de storedDamage y lightness
 
-    public float StoredDamage //Siempre que se quiere obtener el daño almacenado por el jugador se devuelve normalizado para que no sobrepase el límite
+    public float StoredDamage //Siempre que se quiere obtener el daï¿½o almacenado por el jugador se devuelve normalizado para que no sobrepase el lï¿½mite
     {
         get
         {
@@ -32,7 +32,7 @@ public class DamageStore : MonoBehaviour
         }
     }
 
-    public float Lightness //Siempre que se quiere obtener la ligereza del jugador se devuelve normalizada para que no baje del límite
+    public float Lightness //Siempre que se quiere obtener la ligereza del jugador se devuelve normalizada para que no baje del lï¿½mite
     {
         get 
         {
@@ -53,7 +53,7 @@ public class DamageStore : MonoBehaviour
         }
     }
 
-    public void UpdateLightnessToStoredDamage() //Actualiza la Lightness del jugador al daño acumulado que tiene
+    public void UpdateLightnessToStoredDamage() //Actualiza la Lightness del jugador al daï¿½o acumulado que tiene
     {
         lightness = lightnessBase + storedDamage * storedDamageInfluenceOnLightness;
     }
