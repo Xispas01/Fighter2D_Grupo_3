@@ -5,16 +5,24 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public Collider2D[] attackHitboxes;
+
     public GameObject shield;
     public GameObject hurtBox;
+
     public SpriteRenderer shieldSpriteRenderer;
-    public float attackDamage; //Daño que añade el ataque al jugador cuando lo golpea
+
+    public float attackDamage; //Daï¿½o que aï¿½ade el ataque al jugador cuando lo golpea
     public float attackPushForceBase; //Empuje base que tiene el ataque
+
     public float storedDamage;
     public float pushForce;
+
     public GameObject objective; //Objetivo del ataque
+
     public Rigidbody2D objetiveRigidbody;
+
     private AttackProperties attackProperties;
+
     private DamageStore damageStore;
 
 
@@ -27,6 +35,26 @@ public class PlayerAttack : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F))
         {
+            //usa la variable booleana del sprite renderer del personage para decidir si usar la hitbox de la derecha o la izquierda
+
+            /*fuera de todos los metodos
+                private SpriteRenderer sprite;
+            */
+            
+            /*en el metodo start
+                sprite = gameObject.GetComponent<SpriteRenderer>(); 
+            */
+            
+            /*revision si esta flipeado haz x si no y
+                if(sprite.flipX){
+                    x;
+                } else{
+                    y;
+                }
+            */
+
+            
+            //como opcion para cargar aun menos puedes cambiar la posicion de las hitbox en si ya que si las incorporas en un objeto vacio que sea child del jugador la posicion es relativa al centro del parent
             LaunchAttack(attackHitboxes[0]);
             LaunchAttack(attackHitboxes[1]);
         }
@@ -48,7 +76,8 @@ public class PlayerAttack : MonoBehaviour
         }
 
     }
-    private void LaunchAttack(Collider2D col)
+    private void LaunchAttack(Collider2D col/*, int direccion*/)   //se le podria aÃ±adir un int para multiplicar el daÃ±o y decidir la direccion (1 si lanza a la derecha y -1 si lanza a la izquierda 
+                                                //asi solo hay que diseÃ±ar el lanzamiento a la derecha)
     {
         Collider2D[] cols = Physics2D.OverlapBoxAll(col.bounds.center, col.bounds.size, 0.0f, LayerMask.GetMask("Hurtbox"));
         foreach(Collider2D c in cols)
@@ -66,8 +95,8 @@ public class PlayerAttack : MonoBehaviour
             attackDamage = attackProperties.attackDamage;
             attackPushForceBase = attackProperties.attackPushForceBase;
             damageStore = objective.GetComponent<DamageStore>();
-            damageStore.StoredDamage = damageStore.StoredDamage + attackDamage; //Añade al daño almacenado por el enemigo el daño de nuestro ataque
-            pushForce = CalculatePushForce( attackDamage, attackPushForceBase, damageStore); //Calcula el empuje que provoca nuestro ataque después de añadir el daño
+            damageStore.StoredDamage = damageStore.StoredDamage + attackDamage; //Aï¿½ade al daï¿½o almacenado por el enemigo el daï¿½o de nuestro ataque
+            pushForce = CalculatePushForce( attackDamage, attackPushForceBase, damageStore); //Calcula el empuje que provoca nuestro ataque despuï¿½s de aï¿½adir el daï¿½o
             objetiveRigidbody = objective.GetComponent<Rigidbody2D>();
             Vector2 hitAngle = GetHitAngle(col, objetiveRigidbody);
             ApplyPushForce(objetiveRigidbody, hitAngle, pushForce);

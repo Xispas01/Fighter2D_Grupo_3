@@ -26,6 +26,9 @@ public class PlayerMovementSwapkey : MonoBehaviour
 
     private bool canControl = true;                                                                     //Cooldown Control WallJump (Sirve para ser lanzado sin control)
 
+    public bool faceLeft = false; 
+    private SpriteRenderer sprite;
+
     private Vector2 aux2D;                                                                              //Vector 2D auxiliar
 
     Dictionary<string,KeyCode> keys = new Dictionary<string, KeyCode>();                                //Diccionario para controles configurables
@@ -41,6 +44,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
     void Start()                                                                                        //Inicio Start()
     {                   
         rb = gameObject.GetComponent<Rigidbody2D>();                                                    //Asigna el CuerpoRigido del objeto
+        sprite =gameObject.GetComponent<SpriteRenderer>(); 
 
         //Asignacion controles default              
         switch(player){                                                                                 //Asigna las letras configuradas para cada player a cada accion
@@ -83,6 +87,10 @@ public class PlayerMovementSwapkey : MonoBehaviour
                 }
             }else if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, wallJump) != null)             //Revisa BoxCast a muro Walljump
             {
+                if(!sprite.flipX){
+                    sprite.flipX = true;
+                } 
+
                 aux2D = rb.velocity;                                                                      
                 if(aux2D.y <= -3f)                                                                      //Reinicia velocidad de caida a 3 si va a caer(Efecto deslizar pared)
                 {
@@ -100,6 +108,10 @@ public class PlayerMovementSwapkey : MonoBehaviour
                 }
             }else if(Physics2D.OverlapBox(ladoI.position, limLado, 0.0f, wallJump) != null)             //Revisa BoxCast a muro Walljump
             {
+                if(sprite.flipX){
+                    sprite.flipX = false;
+                } 
+
                 aux2D = rb.velocity;                                                                      
                 if(aux2D.y <= -3f)                                                                      //Reinicia velocidad de caida a 3 si va a caer(Efecto deslizar pared)
                 {
@@ -128,7 +140,10 @@ public class PlayerMovementSwapkey : MonoBehaviour
             {                                                                                           
                 if (Input.GetKey(keys["Right"]))                                                        //Movimiento Derecha
                 {                                                                                 
-                    rb.AddForce(Vector2.right * speed, ForceMode2D.Impulse);                            
+                    rb.AddForce(Vector2.right * speed, ForceMode2D.Impulse);
+                    if(sprite.flipX){
+                        sprite.flipX = false;
+                    }
 
                     if (rb.velocity.x >= speedLimit)                                                    //Limitacion de velocidad
                     {                                                                                   
@@ -147,7 +162,10 @@ public class PlayerMovementSwapkey : MonoBehaviour
             {                                                                                           
                 if (Input.GetKey(keys["Left"]))                                                         //Movimiento Izquierda
                 {                                                                                       
-                    rb.AddForce(Vector2.left * speed, ForceMode2D.Impulse);                             
+                    rb.AddForce(Vector2.left * speed, ForceMode2D.Impulse);     
+                    if(!sprite.flipX){
+                        sprite.flipX = true;
+                    }                      
 
                     if (rb.velocity.x <= speedLimit)                                                    //Limitacion de velocidad
                     {                                                                                   

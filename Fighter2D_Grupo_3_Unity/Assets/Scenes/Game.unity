@@ -1019,6 +1019,7 @@ MonoBehaviour:
   jumpsMax: 1
   limSuelo: {x: 0.5, y: 0}
   limLado: {x: 0, y: 0.5}
+  faceLeft: 0
   player: 1
   v: 0
 --- !u!114 &362416702
@@ -1490,6 +1491,7 @@ MonoBehaviour:
   jumpsMax: 1
   limSuelo: {x: 0.5, y: 0}
   limLado: {x: 0, y: 0.5}
+  faceLeft: 0
   player: 1
   v: 0
 --- !u!114 &464664071
@@ -1800,6 +1802,7 @@ MonoBehaviour:
   jumpsMax: 1
   limSuelo: {x: 0.5, y: 0}
   limLado: {x: 0, y: 0.5}
+  faceLeft: 0
   player: 1
   v: 0
 --- !u!114 &508648812
@@ -2881,6 +2884,7 @@ MonoBehaviour:
   jumpsMax: 1
   limSuelo: {x: 0.5, y: 0}
   limLado: {x: 0, y: 0.5}
+  faceLeft: 0
   player: 1
   v: 0
 --- !u!114 &759832004
@@ -3832,6 +3836,7 @@ MonoBehaviour:
   jumpsMax: 1
   limSuelo: {x: 0.5, y: 0}
   limLado: {x: 0, y: 0.5}
+  faceLeft: 0
   player: 2
   v: 0
 --- !u!114 &905455360
@@ -3932,7 +3937,7 @@ SpriteRenderer:
   m_SortingLayerID: 20902541
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2d632b9de56e6d4bbc4ca123542c2b7, type: 3}
   m_Color: {r: 0.5377358, g: 0, b: 0.09012692, a: 1}
   m_FlipX: 0
   m_FlipY: 0
