@@ -16,14 +16,19 @@ public class AtravesablePlatform : MonoBehaviour
     private bool isPlayer2;
     void Start()
     {
-        player = GameObject.FindGameObjectsWithTag("Player");
-        colliderPlayer1 = player[0].GetComponent<CircleCollider2D>();                                //Se supone que siempre hay únicamente 2 jugadores en game
+        player = GameObject.FindGameObjectsWithTag("Player");   
+        
+        colliderPlayer1 = player[0].GetComponent<CircleCollider2D>();            //Se supone que siempre hay ï¿½nicamente 2 jugadores en game
         colliderPlayer2 = player[1].GetComponent<CircleCollider2D>();
+
         colliderPlatform = GetComponent<BoxCollider2D>();
         colliderPlatformBounds = colliderPlatform.bounds;
+
         colliderPlayer1Radius = colliderPlayer1.radius;
         colliderPlayer2Radius = colliderPlayer2.radius;
+        
         topPlatform = colliderPlatformBounds.center.y + colliderPlatformBounds.extents.y;
+        
         isPlayer1 = false;
         isPlayer2 = false;
 
@@ -32,6 +37,9 @@ public class AtravesablePlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*seria preferible que las plataformas se identificaran cual puedes saltar a traves de para evitar una cosa
+        actualmente al atravesar la plataforma te quedas clavado en el eje x 
+        Y al atravesar la plataforma se reinicia el salto antes de tocar suelo por eso mismo*/ //Xispas01
         footPlayer1 = player[0].transform.position.y - colliderPlayer1Radius; 
         footPlayer2 = player[1].transform.position.y - colliderPlayer2Radius;
         if (footPlayer1 >= topPlatform) {
