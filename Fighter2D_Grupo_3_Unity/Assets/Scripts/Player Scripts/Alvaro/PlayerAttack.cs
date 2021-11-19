@@ -33,9 +33,10 @@ public class PlayerAttack : MonoBehaviour
     }
     void Update()
     {
+        //detalle condicionar todo a la variable pausa y si puede controlar su personaje Xispas01
         if(Input.GetKeyDown(KeyCode.F))
         {
-            //usa la variable booleana del sprite renderer del personage para decidir si usar la hitbox de la derecha o la izquierda
+            //puedes usar la variable booleana del sprite renderer del personage para decidir si usar la hitbox de la derecha o la izquierda Xispas01
 
             /*fuera de todos los metodos
                 private SpriteRenderer sprite;
@@ -54,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
             */
 
             
-            //como opcion para cargar aun menos puedes cambiar la posicion de las hitbox en si ya que si las incorporas en un objeto vacio que sea child del jugador la posicion es relativa al centro del parent
+            //como opcion para cargar aun menos puedes cambiar la posicion de las hitbox en si ya que si las incorporas en un objeto vacio que sea child del jugador la posicion es relativa al centro del parent Xispas01
             LaunchAttack(attackHitboxes[0]);
             LaunchAttack(attackHitboxes[1]);
         }
@@ -76,8 +77,8 @@ public class PlayerAttack : MonoBehaviour
         }
 
     }
-    private void LaunchAttack(Collider2D col/*, int direccion*/)   //se le podria añadir un int para multiplicar el daño y decidir la direccion (1 si lanza a la derecha y -1 si lanza a la izquierda 
-                                                //asi solo hay que diseñar el lanzamiento a la derecha)
+    private void LaunchAttack(Collider2D col/*, int direccion*/)  /*se le podria añadir un int para multiplicar el daño y decidir la direccion (1 si lanza a la derecha y -1 si lanza a la izquierda 
+                                                                    asi solo hay que diseñar el lanzamiento a la derecha) Xispas01*/
     {
         Collider2D[] cols = Physics2D.OverlapBoxAll(col.bounds.center, col.bounds.size, 0.0f, LayerMask.GetMask("Hurtbox"));
         foreach(Collider2D c in cols)
@@ -90,15 +91,18 @@ public class PlayerAttack : MonoBehaviour
             }
             //Si no es parte del propio cuerpo
             Debug.Log("ATAQUE GOLPEA");
-
+            
+            //esto recoge las propiedades del ataque asignado al enemigo o me estoy colando yo? Xispas01
             attackProperties = col.gameObject.GetComponent<AttackProperties>();
             attackDamage = attackProperties.attackDamage;
             attackPushForceBase = attackProperties.attackPushForceBase;
+
             damageStore = objective.GetComponent<DamageStore>();
             damageStore.StoredDamage = damageStore.StoredDamage + attackDamage; //A�ade al da�o almacenado por el enemigo el da�o de nuestro ataque
+
             pushForce = CalculatePushForce( attackDamage, attackPushForceBase, damageStore); //Calcula el empuje que provoca nuestro ataque despu�s de a�adir el da�o
             objetiveRigidbody = objective.GetComponent<Rigidbody2D>();
-            Vector2 hitAngle = GetHitAngle(col, objetiveRigidbody);
+            Vector2 hitAngle = GetHitAngle(col, objetiveRigidbody);//Se podrian fijar angulos para los ataques asi no hace falta calcularlos Xispas01
             ApplyPushForce(objetiveRigidbody, hitAngle, pushForce);
 
         }

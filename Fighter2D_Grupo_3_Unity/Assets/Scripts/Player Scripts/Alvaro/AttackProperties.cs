@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class AttackProperties : MonoBehaviour
 {
-    public float attackDamage; //Daño que añade el ataque al juagor cuando lo golpea
+    public float attackDamage; //Daï¿½o que aï¿½ade el ataque al juagor cuando lo golpea
     public float attackPushForceBase; //Empuje base que tiene el ataque
 }

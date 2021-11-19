@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DamageStore : MonoBehaviour
 {
-    //poniendo esto "" justo encima le asignas un rango
     [SerializeField] float storedDamage;
     public int storedDamageLimit;
     public float lightness; //(Ligereza) Lightness es un multiplicador para calcular cuanto te mueve un ataque
@@ -65,12 +64,16 @@ public class DamageStore : MonoBehaviour
         lightness = lightnessBase;
     }
 
+
+/*si no se usa se puede eliminar Xispas01
+
     // Update is called once per frame
     void Update()
     {
 
     }
 
+*/
 
 
 }
