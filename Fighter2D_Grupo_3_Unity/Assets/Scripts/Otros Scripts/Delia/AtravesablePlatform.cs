@@ -36,34 +36,17 @@ public class AtravesablePlatform : MonoBehaviour
         footPlayer2 = player[1].transform.position.y - colliderPlayer2Radius;
         if (footPlayer1 >= topPlatform) {
             Physics2D.IgnoreCollision(player[0].GetComponent<CircleCollider2D>(), GetComponent<BoxCollider2D>(), false);
-            /*colliderPlatform.isTrigger = false;
-            gameObject.tag = "Untagged";
-            gameObject.layer = LayerMask.NameToLayer("Terrain");
-            isPlayer1 = true;*/
         }
         if (footPlayer2 >= topPlatform)
         {
             Physics2D.IgnoreCollision(player[1].GetComponent<CircleCollider2D>(), GetComponent<BoxCollider2D>(), false);
-            /*colliderPlatform.isTrigger = false;
-            gameObject.tag = "Untagged";
-            gameObject.layer = LayerMask.NameToLayer("Terrain");
-            isPlayer2 = true;*/
-
         }
         if (footPlayer1 < topPlatform - 0.1f) {
-            Physics2D.IgnoreCollision(player[0].GetComponent<CircleCollider2D>(), GetComponent<BoxCollider2D>(),true);
-            /*gameObject.tag = "Terrain";
-            gameObject.layer = LayerMask.NameToLayer("Default");
-            isPlayer2 = false;
-            isPlayer2 = false;*/
+            Physics2D.IgnoreCollision(player[0].GetComponent<CircleCollider2D>(), GetComponent<BoxCollider2D>(),true);    
         }
         if (footPlayer2 < topPlatform - 0.1f)
         {
-            Physics2D.IgnoreCollision(player[1].GetComponent<CircleCollider2D>(), GetComponent<BoxCollider2D>(),true);
-            /*gameObject.tag = "Terrain";
-            gameObject.layer = LayerMask.NameToLayer("Default");
-            isPlayer2 = false;
-            isPlayer2 = false;*/
+            Physics2D.IgnoreCollision(player[1].GetComponent<CircleCollider2D>(), GetComponent<BoxCollider2D>(),true);    
         }
     }
 }
