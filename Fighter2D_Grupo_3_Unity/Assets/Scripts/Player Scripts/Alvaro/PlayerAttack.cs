@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject hurtBox;
 
     public SpriteRenderer shieldSpriteRenderer;
+    public SpriteRenderer playerSpriteRenderer;
 
     public float attackDamage; //Da�o que a�ade el ataque al jugador cuando lo golpea
     public float attackPushForceBase; //Empuje base que tiene el ataque
@@ -25,44 +26,33 @@ public class PlayerAttack : MonoBehaviour
 
     private DamageStore damageStore;
 
+    private Vector2 attackDirectionPreset;
+
 
     // Update is called once per frame
     private void Start()
     {
         shieldSpriteRenderer = shield.GetComponent<SpriteRenderer>();
+        playerSpriteRenderer = transform.parent.parent.gameObject.GetComponent<SpriteRenderer>();
     }
     void Update()
     {
         //detalle condicionar todo a la variable pausa y si puede controlar su personaje Xispas01
         if(Input.GetKeyDown(KeyCode.F))
         {
-            //puedes usar la variable booleana del sprite renderer del personage para decidir si usar la hitbox de la derecha o la izquierda Xispas01
-
-            /*fuera de todos los metodos
-                private SpriteRenderer sprite;
-            */
-            
-            /*en el metodo start
-                sprite = gameObject.GetComponent<SpriteRenderer>(); 
-            */
-            
-            /*revision si esta flipeado haz x si no y
-                if(sprite.flipX){
-                    x;
-                } else{
-                    y;
-                }
-            */
-
-            
-            //como opcion para cargar aun menos puedes cambiar la posicion de las hitbox en si ya que si las incorporas en un objeto vacio que sea child del jugador la posicion es relativa al centro del parent Xispas01
-            LaunchAttack(attackHitboxes[0]);
-            LaunchAttack(attackHitboxes[1]);
+            Debug.Log("PULSANDO DEBIL");
+            if (playerSpriteRenderer.flipX == false)
+            { attackDirectionPreset = new Vector2(1.0f, 0.0f); LaunchAttack(attackHitboxes[0]); }
+            else
+            { attackDirectionPreset = new Vector2(-1.0f, 0.0f); LaunchAttack(attackHitboxes[1]); }
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            LaunchAttack(attackHitboxes[2]);
-            LaunchAttack(attackHitboxes[3]);
+            Debug.Log("PULSANDO FUERTE");
+            if (playerSpriteRenderer.flipX == false)
+            { attackDirectionPreset = new Vector2(1.0f, 0.0f); LaunchAttack(attackHitboxes[2]); }
+            else
+            { attackDirectionPreset = new Vector2(-1.0f, 0.0f); LaunchAttack(attackHitboxes[3]); }
         }
         if (Input.GetKey(KeyCode.C))
         {
@@ -77,13 +67,15 @@ public class PlayerAttack : MonoBehaviour
         }
 
     }
-    private void LaunchAttack(Collider2D col/*, int direccion*/)  /*se le podria añadir un int para multiplicar el daño y decidir la direccion (1 si lanza a la derecha y -1 si lanza a la izquierda 
-                                                                    asi solo hay que diseñar el lanzamiento a la derecha) Xispas01*/
+    private void LaunchAttack(Collider2D col/*, int direccion*/)
     {
+        Debug.Log("Implementando Launchattack");
         Collider2D[] cols = Physics2D.OverlapBoxAll(col.bounds.center, col.bounds.size, 0.0f, LayerMask.GetMask("Hurtbox"));
         foreach(Collider2D c in cols)
         {
+            Debug.Log("Collider contactado");
             objective = c.transform.parent.parent.gameObject;
+            Debug.Log(objective.ToString());
 
             if (objective == transform) //Si el padre del padre del collider es el propio jugador
             {
@@ -102,8 +94,8 @@ public class PlayerAttack : MonoBehaviour
 
             pushForce = CalculatePushForce( attackDamage, attackPushForceBase, damageStore); //Calcula el empuje que provoca nuestro ataque despu�s de a�adir el da�o
             objetiveRigidbody = objective.GetComponent<Rigidbody2D>();
-            Vector2 hitAngle = GetHitAngle(col, objetiveRigidbody);//Se podrian fijar angulos para los ataques asi no hace falta calcularlos Xispas01
-            ApplyPushForce(objetiveRigidbody, hitAngle, pushForce);
+            /*Vector2 hitAngle = GetHitAngle(col, objetiveRigidbody);//Se podrian fijar angulos para los ataques asi no hace falta calcularlos Xispas01*/
+            ApplyPushForce(objetiveRigidbody, pushForce, attackDirectionPreset);
 
         }
     }
@@ -119,16 +111,18 @@ public class PlayerAttack : MonoBehaviour
         return pushForce;
     }
 
-    private Vector2 GetHitAngle(Collider2D attackCol, Rigidbody2D objectiveRigidbody)
+    /*private Vector2 GetHitAngle(Collider2D attackCol, Rigidbody2D objectiveRigidbody)
     {
         Vector2 attackCenter = attackCol.transform.position;
         Vector2 objectiveCenter = objectiveRigidbody.transform.position;
         float hitAngleDegree = Vector2.SignedAngle(attackCenter, objectiveCenter);
-        return new Vector2(Mathf.Cos(hitAngleDegree * Mathf.Deg2Rad), Mathf.Sin(hitAngleDegree * Mathf.Deg2Rad));
-    }
+        Vector2 result = new Vector2(Mathf.Cos(hitAngleDegree * Mathf.Deg2Rad), Mathf.Sin(hitAngleDegree * Mathf.Deg2Rad));
+        Debug.Log(result.ToString());
+        return result;
+    }*/
 
-    private void ApplyPushForce(Rigidbody2D objetiveRigidbody, Vector2 hitAngle, float pushForce)
+    private void ApplyPushForce(Rigidbody2D objetiveRigidbody, float pushForce, Vector2 attackDirectionPreset)
     {
-        objetiveRigidbody.AddForce(hitAngle * pushForce, ForceMode2D.Impulse);
+        objetiveRigidbody.AddForce(attackDirectionPreset * pushForce, ForceMode2D.Impulse);
     }
 }
