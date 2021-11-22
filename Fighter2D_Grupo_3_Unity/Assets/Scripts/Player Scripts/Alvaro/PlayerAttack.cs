@@ -28,6 +28,8 @@ public class PlayerAttack : MonoBehaviour
 
     private Vector2 attackDirectionPreset;
 
+    public bool canAttack;
+
 
     // Update is called once per frame
     private void Start()
@@ -37,38 +39,42 @@ public class PlayerAttack : MonoBehaviour
     }
     void Update()
     {
-        //detalle condicionar todo a la variable pausa y si puede controlar su personaje Xispas01
-        if(Input.GetKeyDown(KeyCode.F))
+        while (canAttack == true)
         {
-            Debug.Log("PULSANDO DEBIL");
-            if (playerSpriteRenderer.flipX == false)
-            { attackDirectionPreset = new Vector2(1.0f, 0.0f); LaunchAttack(attackHitboxes[0]); }
-            else
-            { attackDirectionPreset = new Vector2(-1.0f, 0.0f); LaunchAttack(attackHitboxes[1]); }
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.Log("PULSANDO FUERTE");
-            if (playerSpriteRenderer.flipX == false)
-            { attackDirectionPreset = new Vector2(1.0f, 0.0f); LaunchAttack(attackHitboxes[2]); }
-            else
-            { attackDirectionPreset = new Vector2(-1.0f, 0.0f); LaunchAttack(attackHitboxes[3]); }
-        }
-        if (Input.GetKey(KeyCode.C))
-        {
-            LaunchDefense();
-            Debug.Log("PULSANDO ESCUDO");
+            //detalle condicionar todo a la variable pausa y si puede controlar su personaje Xispas01
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Debug.Log("PULSANDO DEBIL");
+                if (playerSpriteRenderer.flipX == false)
+                { attackDirectionPreset = new Vector2(1.0f, 0.0f); LaunchAttack(attackHitboxes[0]); }
+                else
+                { attackDirectionPreset = new Vector2(-1.0f, 0.0f); LaunchAttack(attackHitboxes[1]); }
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Debug.Log("PULSANDO FUERTE");
+                if (playerSpriteRenderer.flipX == false)
+                { attackDirectionPreset = new Vector2(1.0f, 0.0f); LaunchAttack(attackHitboxes[2]); }
+                else
+                { attackDirectionPreset = new Vector2(-1.0f, 0.0f); LaunchAttack(attackHitboxes[3]); }
+            }
+            if (Input.GetKey(KeyCode.C))
+            {
+                LaunchDefense();
+                Debug.Log("PULSANDO ESCUDO");
 
-        }
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-            hurtBox.layer = 6;
-            shieldSpriteRenderer.enabled = false;
+            }
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                hurtBox.layer = 6;
+                shieldSpriteRenderer.enabled = false;
+            }
         }
 
     }
     private void LaunchAttack(Collider2D col/*, int direccion*/)
     {
+        canAttack = false;
         Debug.Log("Implementando Launchattack");
         Collider2D[] cols = Physics2D.OverlapBoxAll(col.bounds.center, col.bounds.size, 0.0f, LayerMask.GetMask("Hurtbox"));
         foreach(Collider2D c in cols)
@@ -96,8 +102,10 @@ public class PlayerAttack : MonoBehaviour
             objetiveRigidbody = objective.GetComponent<Rigidbody2D>();
             /*Vector2 hitAngle = GetHitAngle(col, objetiveRigidbody);//Se podrian fijar angulos para los ataques asi no hace falta calcularlos Xispas01*/
             ApplyPushForce(objetiveRigidbody, pushForce, attackDirectionPreset);
+            
 
         }
+        canAttack = true;
     }
     private void LaunchDefense( )
     {
@@ -121,8 +129,9 @@ public class PlayerAttack : MonoBehaviour
         return result;
     }*/
 
-    private void ApplyPushForce(Rigidbody2D objetiveRigidbody, float pushForce, Vector2 attackDirectionPreset)
+    private void ApplyPushForce(Rigidbody2D ObjectiveRigidbody, float pushForce, Vector2 attackDirectionPreset)
     {
-        objetiveRigidbody.AddForce(attackDirectionPreset * pushForce, ForceMode2D.Impulse);
+        ObjectiveRigidbody.AddForce(attackDirectionPreset * pushForce, ForceMode2D.Impulse);
+        /*ObjectiveRigidbody.transform.gameObject.GetComponent<SpriteRenderer>().flipX = true;*/
     }
 }
