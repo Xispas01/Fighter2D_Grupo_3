@@ -30,7 +30,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
 
     private Vector2 aux2D;                                                                              //Vector 2D auxiliar
 
-    Dictionary<string,KeyCode> keys = new Dictionary<string, KeyCode>();                                //Diccionario para controles configurables
+    public Dictionary<string,KeyCode> keys = new Dictionary<string, KeyCode>();                                //Diccionario para controles configurables
 
     public int player;
 
