@@ -23,8 +23,8 @@ TagManager:
   - Hurtbox
   - Hitbox
   - Shielded
-  - 
-  - 
+  - SkyBox
+  - Atravesable
   - 
   - 
   - 
@@ -41,6 +41,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: SkyBox
+    uniqueID: 2948610211
     locked: 0
   - name: Background
     uniqueID: 187666327

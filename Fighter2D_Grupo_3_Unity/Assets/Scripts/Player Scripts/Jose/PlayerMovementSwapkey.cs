@@ -66,7 +66,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
             }
         }
 
-        ground = LayerMask.GetMask("Terrain","WallJump","Empujable");                                   //Asigna valor a las mascaras de RayCast
+        ground = LayerMask.GetMask("Terrain","WallJump","Empujable","Atravesable");                     //Asigna valor a las mascaras de RayCast
         wall = LayerMask.GetMask("Terrain","WallJump");                                                 //Asigna valor a las mascaras de RayCast
         wallJump = LayerMask.GetMask("WallJump");                                                       //Asigna valor a las mascaras de RayCast
 
