@@ -203,6 +203,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         canControl = true;
     }
+     /**Esto requiere poner el tag "Respawn" en la capa donde esté las colisiones*/
      public void OnTriggerEnter2D(Collider2D collision) {                                                //Colisión con las paredes o el suelo
         if (collision.CompareTag("Respawn") && Time.time > LastRespawn) {
             LastRespawn = Time.time + NextRespawn;
@@ -211,4 +212,5 @@ public class PlayerMovementSwapkey : MonoBehaviour
         }
 
     }
+   
 }
