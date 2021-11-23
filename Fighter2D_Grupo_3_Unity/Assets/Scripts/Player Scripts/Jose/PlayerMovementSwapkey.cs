@@ -47,6 +47,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
     void Start()                                                                                        //Inicio Start()
     {                   
         rb = gameObject.GetComponent<Rigidbody2D>();                                                    //Asigna el CuerpoRigido del objeto
+        Animator = GetComponent<Animator>();
         sprite =gameObject.GetComponent<SpriteRenderer>(); 
 
         //Asignacion controles
