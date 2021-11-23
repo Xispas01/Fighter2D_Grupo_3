@@ -15,6 +15,13 @@ public class PlayerMovementSwapkey : MonoBehaviour
     public Transform ladoI;                                                                             //Ubicacion lado Izquierdo
     public int jumpsMax = 1;                                                                            //Maximos AirJumps
     int jumpsN;                                                                                         //AirJumps actuales
+    public int Death_Count;                                                                            //Contador de muertes
+    public Transform SpawnPoint;                                                                        //Coordenadas para Respawn
+    /*Esto es para que el Death_Count cuente con cierto retraso**/
+    private float LastRespawn = 0.0f;                                                                   
+    private float NextRespawn = 0.1f;
+    /*Necesidad de adaptar el código de animación del jugador a las necesidades del proyecto**/
+    private Animator Animator;                                                                          //El Animador del Jugador
 
 
     public Vector2 limSuelo = new Vector2(0.5f, 0f);                                                    //Tamaños de boxcast Techo/suelo
@@ -194,5 +201,13 @@ public class PlayerMovementSwapkey : MonoBehaviour
     IEnumerator WallJumpCD() {                                                                          //Cooldown control WallJump
         yield return new WaitForSeconds(0.2f);
         canControl = true;
+    }
+     public void OnTriggerEnter2D(Collider2D collision) {                                                //Colisión con las paredes o el suelo
+        if (collision.CompareTag("Respawn") && Time.time > LastRespawn) {
+            LastRespawn = Time.time + NextRespawn;
+            Death_Count++;
+            transform.position = SpawnPoint.position ;
+        }
+
     }
 }
