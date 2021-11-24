@@ -82,6 +82,17 @@ public class PlayerMovementSwapkey : MonoBehaviour
     // Update is called once per frame
     void Update()                                                                                       //Inicio Update()
     {
+        switch(player){                                                                                 //Asigna las letras configuradas para cada player a cada accion
+            case 1:{
+                SettingsSaving.deathsP1 = Death_Count;
+                break;
+            }
+            case 2:{
+                SettingsSaving.deathsP2 = Death_Count;
+                break;
+            }
+        }
+
         if (PauseMenu.IsPaused==false && canControl == true)                                            //Revision de pausa Y control
         {
 

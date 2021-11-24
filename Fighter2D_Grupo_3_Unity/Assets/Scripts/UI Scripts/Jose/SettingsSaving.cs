@@ -17,6 +17,9 @@ public class SettingsSaving : MonoBehaviour
     public static float musicV;
     public static float sfxV;
 
+    public static int deathsP1;
+    public static int deathsP2;
+    
     public static int i = 0;
 
     public static int width;
