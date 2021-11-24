@@ -1,10 +1,12 @@
+//Por favor firmar las modificacions para saber a quien preguntar si se tienen dudas
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovementSwapkey : MonoBehaviour
 {
-    //variables                                                                                 
+    //Xispas01
+    //variables
     public float jump = 400.0f;                                                                         //Fuerza de salto
     public float speed = 2.0f;                                                                          //Fuerza de movimiento
     public float speedLimit = 5.0f;                                                                     //Limite de velocidad
@@ -15,7 +17,9 @@ public class PlayerMovementSwapkey : MonoBehaviour
     public Transform ladoI;                                                                             //Ubicacion lado Izquierdo
     public int jumpsMax = 1;                                                                            //Maximos AirJumps
     int jumpsN;                                                                                         //AirJumps actuales
-    public int Death_Count;                                                                            //Contador de muertes
+
+    //Otro
+    public int Death_Count;                                                                             //Contador de muertes
     public Transform SpawnPoint;                                                                        //Coordenadas para Respawn
     /*Esto es para que el Death_Count cuente con cierto retraso**/
     private float LastRespawn = 0.0f;                                                                   
@@ -23,7 +27,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
     /*Necesidad de adaptar el código de animación del jugador a las necesidades del proyecto**/
     private Animator Animator;                                                                          //El Animador del Jugador
 
-
+    //Xispas01
     public Vector2 limSuelo = new Vector2(0.5f, 0f);                                                    //Tamaños de boxcast Techo/suelo
     public Vector2 limLado = new Vector2(0f, 0.5f);                                                     //Tamaños de boxcast Lados
 
@@ -37,7 +41,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
 
     private Vector2 aux2D;                                                                              //Vector 2D auxiliar
 
-    public Dictionary<string,KeyCode> keys = new Dictionary<string, KeyCode>();                                //Diccionario para controles configurables
+    public Dictionary<string,KeyCode> inputs = new Dictionary<string, KeyCode>();                                //Diccionario para controles configurables
 
     public int player;
 
@@ -47,21 +51,23 @@ public class PlayerMovementSwapkey : MonoBehaviour
     void Start()                                                                                        //Inicio Start()
     {                   
         rb = gameObject.GetComponent<Rigidbody2D>();                                                    //Asigna el CuerpoRigido del objeto
+        //otro
         Animator = GetComponent<Animator>();
+        //Xispas01
         sprite =gameObject.GetComponent<SpriteRenderer>(); 
 
         //Asignacion controles
         switch(player){                                                                                 //Asigna las letras configuradas para cada player a cada accion
             case 1:{
-                keys.Add("Left", SettingsSaving.keys["LeftA"]);
-                keys.Add("Right", SettingsSaving.keys["RightA"]);                                             
-                keys.Add("Jump", SettingsSaving.keys["JumpA"]);                                               
+                inputs.Add("Left", SettingsSaving.keys["LeftA"]);
+                inputs.Add("Right", SettingsSaving.keys["RightA"]);                                             
+                inputs.Add("Jump", SettingsSaving.keys["JumpA"]);                                               
                 break;
             }
             case 2:{
-                keys.Add("Left", SettingsSaving.keys["LeftB"]);                                               
-                keys.Add("Right", SettingsSaving.keys["RightB"]);                                             
-                keys.Add("Jump", SettingsSaving.keys["JumpB"]);                                               
+                inputs.Add("Left", SettingsSaving.keys["LeftB"]);                                               
+                inputs.Add("Right", SettingsSaving.keys["RightB"]);                                             
+                inputs.Add("Jump", SettingsSaving.keys["JumpB"]);                                               
                 break;
             }
         }
@@ -82,7 +88,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
             if (Physics2D.OverlapBox(pies.position, limSuelo, 0.0f, ground) != null )                   //Revisa BoxCast al Suelo
             {
                 jumpsN = 0;                                                                             //Reinicia AirJumps
-                if (Input.GetKeyDown(keys["Jump"]))                                                     
+                if (Input.GetKeyDown(inputs["Jump"]))                                                     
                 {
                     PlaySFX("JumpSFX");
                     rb.AddForce(Vector3.up * jump);                                                     
@@ -99,7 +105,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
                 rb.velocity = new Vector2(aux2D.x,-3f);                                                   
                 }
 
-                if (Input.GetKeyDown(keys["Jump"]))                                                     
+                if (Input.GetKeyDown(inputs["Jump"]))                                                     
                 {
                     PlaySFX("WallJumpSFX");
                     aux2D = rb.velocity;                                                                  
@@ -120,7 +126,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
                     rb.velocity = new Vector2(aux2D.x,-3f);                                                   
                 }
 
-                if (Input.GetKeyDown(keys["Jump"]))                                                     
+                if (Input.GetKeyDown(inputs["Jump"]))                                                     
                 {
                     PlaySFX("WallJumpSFX");
                     aux2D = rb.velocity;                                                                  
@@ -129,7 +135,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
                     canControl = false;                                                                
                     StartCoroutine("WallJumpCD");                                                       //Inicia cooldown de WallJump
                 }
-            } else if (Input.GetKeyDown(keys["Jump"]) && jumpsN < jumpsMax)                             //Revisa limite de AirJumps
+            } else if (Input.GetKeyDown(inputs["Jump"]) && jumpsN < jumpsMax)                             //Revisa limite de AirJumps
             {
                 PlaySFX("AirJumpSFX");
                 aux2D = rb.velocity;                                                                    //Reinicia velocidad vertical antes de saltar
@@ -140,7 +146,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
 
             if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, wall) == null)                       //Evita aplicar fuerza contra un muro
             {                                                                                           
-                if (Input.GetKey(keys["Right"]))                                                        //Movimiento Derecha
+                if (Input.GetKey(inputs["Right"]))                                                        //Movimiento Derecha
                 {                                                                                 
                     rb.AddForce(Vector2.right * speed, ForceMode2D.Impulse);
                     
@@ -163,7 +169,7 @@ public class PlayerMovementSwapkey : MonoBehaviour
             
             if (Physics2D.OverlapBox(ladoI.position, limLado, 0.0f, wall) == null)                      //Evita aplicar fuerza contra un muro
             {                                                                                           
-                if (Input.GetKey(keys["Left"]))                                                         //Movimiento Izquierda
+                if (Input.GetKey(inputs["Left"]))                                                         //Movimiento Izquierda
                 {                                                                                       
                     rb.AddForce(Vector2.left * speed, ForceMode2D.Impulse);     
 
@@ -185,8 +191,8 @@ public class PlayerMovementSwapkey : MonoBehaviour
             }                                                                                                                                                                                     
 
             //Reinicio velocidad eje X
-            if (Input.GetKeyUp(keys["Right"]) || Input.GetKeyUp(keys["Left"])                           //Revision soltar teclas movimiento
-            || (Input.GetKey(keys["Right"]) && Input.GetKey(keys["Left"])))                             //Revision pulsar simultaneas teclas movimiento
+            if (Input.GetKeyUp(inputs["Right"]) || Input.GetKeyUp(inputs["Left"])                           //Revision soltar teclas movimiento
+            || (Input.GetKey(inputs["Right"]) && Input.GetKey(inputs["Left"])))                             //Revision pulsar simultaneas teclas movimiento
             {
                 Vector2 aux2D = rb.velocity;                                                            //Reinicio velocidad horizontal
                 rb.velocity = new Vector2(0.0f, aux2D.y);                                                 
@@ -203,8 +209,10 @@ public class PlayerMovementSwapkey : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         canControl = true;
     }
-     /**Esto requiere poner el tag "Respawn" en la capa donde esté las colisiones*/
-     public void OnTriggerEnter2D(Collider2D collision) {                                                //Colisión con las paredes o el suelo
+
+    //otro
+    /**Esto requiere poner el tag "Respawn" en la capa donde esté las colisiones*/
+    public void OnTriggerEnter2D(Collider2D collision) {                                                //Colisión con las paredes o el suelo
         if (collision.CompareTag("Respawn") && Time.time > LastRespawn) {
             LastRespawn = Time.time + NextRespawn;
             Death_Count++;
