@@ -17,8 +17,13 @@ public class SettingsSaving : MonoBehaviour
     public static float musicV;
     public static float sfxV;
 
+    public static int lives;
     public static int deathsP1;
     public static int deathsP2;
+    public static int winner;
+    
+    public static int gameTime;
+    public static int actualTime;
     
     public static int i = 0;
 
