@@ -82,17 +82,6 @@ public class PlayerMovementSwapkey : MonoBehaviour
     // Update is called once per frame
     void Update()                                                                                       //Inicio Update()
     {
-        switch(player){                                                                                 //Asigna las letras configuradas para cada player a cada accion
-            case 1:{
-                SettingsSaving.deathsP1 = Death_Count;
-                break;
-            }
-            case 2:{
-                SettingsSaving.deathsP2 = Death_Count;
-                break;
-            }
-        }
-
         if (PauseMenu.IsPaused==false && canControl == true)                                            //Revision de pausa Y control
         {
 
@@ -227,7 +216,25 @@ public class PlayerMovementSwapkey : MonoBehaviour
         if (collision.CompareTag("Respawn") && Time.time > LastRespawn) {
             LastRespawn = Time.time + NextRespawn;
             Death_Count++;
+
+            switch(player){//especificacion de muertes en otro script para cada player
+            case 1:{
+                SettingsSaving.deathsP1++;
+                if(SettingsSaving.deathsP1 == SettingsSaving.lives){
+                    WinCondition.LivesMatchEnd(2);
+                }
+                break;
+            }
+            case 2:{
+                SettingsSaving.deathsP2++;
+                if(SettingsSaving.deathsP1 == SettingsSaving.lives){
+                    WinCondition.LivesMatchEnd(1);
+                }
+                break;
+            }
             transform.position = SpawnPoint.position ;
+            
+        }
         }
 
     }
