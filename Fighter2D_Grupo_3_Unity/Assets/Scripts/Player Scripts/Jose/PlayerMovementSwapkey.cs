@@ -221,14 +221,14 @@ public class PlayerMovementSwapkey : MonoBehaviour
             case 1:{
                 SettingsSaving.deathsP1++;
                 if(SettingsSaving.deathsP1 == SettingsSaving.lives){
-                    WinCondition.LivesMatchEnd(2);
+                   // WinCondition.LivesMatchEnd(2);
                 }
                 break;
             }
             case 2:{
                 SettingsSaving.deathsP2++;
                 if(SettingsSaving.deathsP1 == SettingsSaving.lives){
-                    WinCondition.LivesMatchEnd(1);
+                   // WinCondition.LivesMatchEnd(1);
                 }
                 break;
             }

@@ -8,7 +8,7 @@ public class WinCondition : MonoBehaviour
     public void InstanReMatch(){
         SettingsSaving.deathsP1 = 0;
         SettingsSaving.deathsP2 = 0;
-        MenuControl.zSceneChange("SmashMap");
+       //MenuControl.zSceneChange("SmashMap"); comentado hasta que se solucione
     }
 
     public void Temporizador(int actualSecond){
@@ -27,7 +27,7 @@ public class WinCondition : MonoBehaviour
 
     public void LivesMatchEnd(int victor){
         SettingsSaving.winner = victor;
-        MenuControl.zSceneChange("MatchEnd");
+        //MenuControl.zSceneChange("MatchEnd");
     }
 
     public void TimeMatchEnd(){

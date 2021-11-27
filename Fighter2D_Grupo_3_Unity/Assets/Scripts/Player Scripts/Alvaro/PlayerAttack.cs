@@ -35,11 +35,12 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         shieldSpriteRenderer = shield.GetComponent<SpriteRenderer>();
-        playerSpriteRenderer = transform.parent.parent.gameObject.GetComponent<SpriteRenderer>();
+        //playerSpriteRenderer = transform.parent.parent.gameObject.GetComponent<SpriteRenderer>();
+        canAttack = true;
     }
     void Update()
     {
-        while (canAttack == true)
+        if (canAttack == true)
         {
             //detalle condicionar todo a la variable pausa y si puede controlar su personaje Xispas01
             if (Input.GetKeyDown(KeyCode.F))
@@ -115,6 +116,7 @@ public class PlayerAttack : MonoBehaviour
 
     private float CalculatePushForce(float attackDamage, float attackPushForceBase, DamageStore damageStore)
     {
+        Debug.Log("Calculando");
         float pushForce = attackPushForceBase + damageStore.Lightness;
         return pushForce;
     }
@@ -131,6 +133,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void ApplyPushForce(Rigidbody2D ObjectiveRigidbody, float pushForce, Vector2 attackDirectionPreset)
     {
+        Debug.Log("AplicandoFuerza");
         ObjectiveRigidbody.AddForce(attackDirectionPreset * pushForce, ForceMode2D.Impulse);
         /*ObjectiveRigidbody.transform.gameObject.GetComponent<SpriteRenderer>().flipX = true;*/
     }
