@@ -25,7 +25,7 @@ public class WinCondition : MonoBehaviour
         Temporizador(SettingsSaving.actualTime);
     }
 
-    public void LivesMatchEnd(int victor){
+    public static void LivesMatchEnd(int victor){
         SettingsSaving.winner = victor;
         //MenuControl.zSceneChange("MatchEnd");
     }

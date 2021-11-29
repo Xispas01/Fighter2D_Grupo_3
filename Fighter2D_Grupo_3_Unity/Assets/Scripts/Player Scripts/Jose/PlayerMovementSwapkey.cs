@@ -216,27 +216,24 @@ public class PlayerMovementSwapkey : MonoBehaviour
         if (collision.CompareTag("Respawn") && Time.time > LastRespawn) {
             LastRespawn = Time.time + NextRespawn;
             Death_Count++;
-
-            switch(player){//especificacion de muertes en otro script para cada player
-            case 1:{
-                SettingsSaving.deathsP1++;
-                if(SettingsSaving.deathsP1 == SettingsSaving.lives){
-                   // WinCondition.LivesMatchEnd(2);
-                }
-                break;
-            }
-            case 2:{
-                SettingsSaving.deathsP2++;
-                if(SettingsSaving.deathsP1 == SettingsSaving.lives){
-                   // WinCondition.LivesMatchEnd(1);
-                }
-                break;
-            }
             transform.position = SpawnPoint.position ;
-            
+            switch(player){//especificacion de muertes en otro script para cada player
+                case 1:{
+                    SettingsSaving.deathsP1++;
+                    if(SettingsSaving.deathsP1 == SettingsSaving.lives){
+                       WinCondition.LivesMatchEnd(2);
+                    }
+                    break;
+                }
+                case 2:{
+                    SettingsSaving.deathsP2++;
+                    if(SettingsSaving.deathsP1 == SettingsSaving.lives){
+                       WinCondition.LivesMatchEnd(1);
+                    }
+                    break;
+                }
+            }
         }
-        }
-
     }
    
 }
