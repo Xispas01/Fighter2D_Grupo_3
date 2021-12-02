@@ -25,7 +25,10 @@ public class PlayerMovementSwapkey : MonoBehaviour
     private float LastRespawn = 0.0f;                                                                   
     private float NextRespawn = 0.1f;
     /*Necesidad de adaptar el código de animación del jugador a las necesidades del proyecto**/
-    private Animator Animator;                                                                          //El Animador del Jugador
+    private Animator AnimatorLibro;
+    private Animator AnimatorAlice;
+    public GameObject libro;
+    public GameObject alice;
 
     //Xispas01
     public Vector2 limSuelo = new Vector2(0.5f, 0f);                                                    //Tamaños de boxcast Techo/suelo
@@ -37,9 +40,11 @@ public class PlayerMovementSwapkey : MonoBehaviour
 
     private bool canControl = true;                                                                     //Cooldown Control WallJump (Sirve para ser lanzado sin control)
     
-    private SpriteRenderer sprite;                                                                      //Permite flipear el personaje a la direccion que se esta moviendo
+    private SpriteRenderer sprite;  
+    private SpriteRenderer sprite2;
 
     private Vector2 aux2D;                                                                              //Vector 2D auxiliar
+    private Vector3 aux3D;                                                                              //Vector 3D auxiliar
 
     public Dictionary<string,KeyCode> inputs = new Dictionary<string, KeyCode>();                                //Diccionario para controles configurables
 
@@ -50,11 +55,12 @@ public class PlayerMovementSwapkey : MonoBehaviour
 
     void Start()                                                                                        //Inicio Start()
     {                   
-        rb = gameObject.GetComponent<Rigidbody2D>();                                                    //Asigna el CuerpoRigido del objeto
-        //otro
-        Animator = GetComponent<Animator>();
+        rb = gameObject.GetComponent<Rigidbody2D>();           
         //Xispas01
-        sprite =gameObject.GetComponent<SpriteRenderer>(); 
+        sprite = alice.GetComponent<SpriteRenderer>(); 
+        sprite2 = libro.GetComponent<SpriteRenderer>(); 
+        AnimatorLibro = libro.GetComponent<Animator>();
+        AnimatorAlice = alice.GetComponent<Animator>();
 
         //Asignacion controles
         switch(player){                                                                                 //Asigna las letras configuradas para cada player a cada accion
@@ -84,9 +90,23 @@ public class PlayerMovementSwapkey : MonoBehaviour
     {
         if (PauseMenu.IsPaused==false && canControl == true)                                            //Revision de pausa Y control
         {
+            if(Input.GetKeyDown(KeyCode.Q)){
+                AnimatorAlice.SetBool("Heavy",true);
+                AnimatorLibro.SetBool("heavy",true);
+                StartCoroutine("cdHeavy");
+            }
+            if(Input.GetKeyDown(KeyCode.E)){
+                AnimatorAlice.SetBool("Normal",true);
+                StartCoroutine("cdNormal");
+            }
 
+            if (Physics2D.OverlapBox(pies.position, limSuelo, 0.0f, ground) == null )                   //Revisa BoxCast al Suelo
+                    {
+                        AnimatorAlice.SetBool("Jump",true);
+                    }
             if (Physics2D.OverlapBox(pies.position, limSuelo, 0.0f, ground) != null )                   //Revisa BoxCast al Suelo
             {
+                AnimatorAlice.SetBool("Jump",false);
                 jumpsN = 0;                                                                             //Reinicia AirJumps
                 if (Input.GetKeyDown(inputs["Jump"]))                                                     
                 {
@@ -147,10 +167,16 @@ public class PlayerMovementSwapkey : MonoBehaviour
             if(Physics2D.OverlapBox(ladoD.position, limLado, 0.0f, wall) == null)                       //Evita aplicar fuerza contra un muro
             {                                                                                           
                 if (Input.GetKey(inputs["Right"]))                                                        //Movimiento Derecha
-                {                                                                                 
+                {        
+                    if (Physics2D.OverlapBox(pies.position, limSuelo, 0.0f, ground) != null )                   //Revisa BoxCast al Suelo
+                    {
+                        AnimatorAlice.SetBool("Run",true);
+                        AnimatorLibro.SetBool("run",true);
+                    }                                                                         
                     rb.AddForce(Vector2.right * speed, ForceMode2D.Impulse);
                     
                     if(sprite.flipX){                                                                   //Flipea el personaje a la direccion que va a moverse
+                        sprite2.flipX = false;
                         sprite.flipX = false;
                     }
 
@@ -170,10 +196,16 @@ public class PlayerMovementSwapkey : MonoBehaviour
             if (Physics2D.OverlapBox(ladoI.position, limLado, 0.0f, wall) == null)                      //Evita aplicar fuerza contra un muro
             {                                                                                           
                 if (Input.GetKey(inputs["Left"]))                                                         //Movimiento Izquierda
-                {                                                                                       
+                {           
+                    if (Physics2D.OverlapBox(pies.position, limSuelo, 0.0f, ground) != null )                   //Revisa BoxCast al Suelo
+                    {
+                        AnimatorAlice.SetBool("Run",true);
+                        AnimatorLibro.SetBool("run",true);
+                    }
                     rb.AddForce(Vector2.left * speed, ForceMode2D.Impulse);     
 
                     if(!sprite.flipX){                                                                  //Flipea el personaje a la direccion que va a moverse
+                        sprite2.flipX = true;
                         sprite.flipX = true;
                     }                      
 
@@ -194,6 +226,9 @@ public class PlayerMovementSwapkey : MonoBehaviour
             if (Input.GetKeyUp(inputs["Right"]) || Input.GetKeyUp(inputs["Left"])                           //Revision soltar teclas movimiento
             || (Input.GetKey(inputs["Right"]) && Input.GetKey(inputs["Left"])))                             //Revision pulsar simultaneas teclas movimiento
             {
+                
+                AnimatorAlice.SetBool("Run",false);
+                AnimatorLibro.SetBool("run",false);
                 Vector2 aux2D = rb.velocity;                                                            //Reinicio velocidad horizontal
                 rb.velocity = new Vector2(0.0f, aux2D.y);                                                 
             }
@@ -208,6 +243,16 @@ public class PlayerMovementSwapkey : MonoBehaviour
     IEnumerator WallJumpCD() {                                                                          //Cooldown control WallJump
         yield return new WaitForSeconds(0.2f);
         canControl = true;
+    }
+
+    IEnumerator cdHeavy() {                                                                          //Cooldown control WallJump
+        yield return new WaitForSeconds(0.1f);
+        AnimatorAlice.SetBool("Heavy",false);
+        AnimatorLibro.SetBool("heavy",false);
+    }
+    IEnumerator cdNormal() {                                                                          //Cooldown control WallJump
+        yield return new WaitForSeconds(0.1f);
+        AnimatorAlice.SetBool("Normal",false);
     }
 
     //otro
