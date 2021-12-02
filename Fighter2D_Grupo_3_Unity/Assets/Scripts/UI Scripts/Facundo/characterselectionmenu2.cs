@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class characterselectionmenu2 : MonoBehaviour
@@ -8,14 +9,14 @@ public class characterselectionmenu2 : MonoBehaviour
     public static List<Sprite> spritePersonajes;
     public int selectedCharacter = 0;
     public int selectedCharacter2 = 0;
-    public SpriteRenderer display1;
-    public SpriteRenderer display2;
+    public Image display1;
+    public Image display2;
     public Sprite[] sprites; 
 
     void Start()
     { 
-        display1 = GameObject.Find("displaycharacter1").GetComponent<SpriteRenderer>();
-        display2 = GameObject.Find("displaycharacter2").GetComponent<SpriteRenderer>();
+        display1 = GameObject.Find("displaycharacter1").GetComponent<Image>();
+        display2 = GameObject.Find("displaycharacter2").GetComponent<Image>();
     }
 
     public void Fight()

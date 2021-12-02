@@ -57,14 +57,15 @@ public class PlayerMovementSwapkey : MonoBehaviour
     {                   
         rb = gameObject.GetComponent<Rigidbody2D>();           
         //Xispas01
-        sprite = alice.GetComponent<SpriteRenderer>(); 
-        sprite2 = libro.GetComponent<SpriteRenderer>(); 
-        AnimatorLibro = libro.GetComponent<Animator>();
-        AnimatorAlice = alice.GetComponent<Animator>();
 
         //Asignacion controles
         switch(player){                                                                                 //Asigna las letras configuradas para cada player a cada accion
             case 1:{
+                sprite = alice.GetComponent<SpriteRenderer>(); 
+                sprite2 = libro.GetComponent<SpriteRenderer>(); 
+                AnimatorLibro = libro.GetComponent<Animator>();
+                AnimatorAlice = alice.GetComponent<Animator>();
+
                 inputs.Add("Left", SettingsSaving.keys["LeftA"]);
                 inputs.Add("Right", SettingsSaving.keys["RightA"]);                                             
                 inputs.Add("Jump", SettingsSaving.keys["JumpA"]);                                               
@@ -91,17 +92,41 @@ public class PlayerMovementSwapkey : MonoBehaviour
         if (PauseMenu.IsPaused==false && canControl == true)                                            //Revision de pausa Y control
         {
             if(Input.GetKeyDown(KeyCode.Q)){
+                switch(player){                                                                                 //Asigna las letras configuradas para cada player a cada accion
+                    case 1:{                                            
+                        break;
+                    }
+                    case 2:{                                           
+                        break;
+                    }
+                }
                 AnimatorAlice.SetBool("Heavy",true);
                 AnimatorLibro.SetBool("heavy",true);
                 StartCoroutine("cdHeavy");
             }
             if(Input.GetKeyDown(KeyCode.E)){
+                switch(player){                                                                                 //Asigna las letras configuradas para cada player a cada accion
+                    case 1:{                                            
+                        break;
+                    }
+                    case 2:{                                           
+                        break;
+                    }
+                }
                 AnimatorAlice.SetBool("Normal",true);
                 StartCoroutine("cdNormal");
             }
 
             if (Physics2D.OverlapBox(pies.position, limSuelo, 0.0f, ground) == null )                   //Revisa BoxCast al Suelo
                     {
+                        switch(player){                                                                                 //Asigna las letras configuradas para cada player a cada accion
+                            case 1:{                                            
+                                break;
+                            }
+                            case 2:{                                           
+                                break;
+                            }
+                        }
                         AnimatorAlice.SetBool("Jump",true);
                     }
             if (Physics2D.OverlapBox(pies.position, limSuelo, 0.0f, ground) != null )                   //Revisa BoxCast al Suelo

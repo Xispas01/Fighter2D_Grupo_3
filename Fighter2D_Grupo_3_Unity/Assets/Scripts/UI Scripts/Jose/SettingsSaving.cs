@@ -25,6 +25,9 @@ public class SettingsSaving : MonoBehaviour
     public static int gameTime;
     public static int actualTime;
     
+    public static int spriteP1;
+    public static int spriteP2;
+
     public static int i = 0;
 
     public static int width;
@@ -40,6 +43,7 @@ public class SettingsSaving : MonoBehaviour
         }
         DontDestroyOnLoad(this);
     }
+
     private void Update() {
         isFirstRun = false;
     }
