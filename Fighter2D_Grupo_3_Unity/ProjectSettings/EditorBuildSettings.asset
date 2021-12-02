@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SmashMap.unity
     guid: 3aa566f617a5abc48aa7b340f80e16d8
+  - enabled: 1
+    path: Assets/Scenes/MenuSelectCharacter.unity
+    guid: 760ef1a80958742dfbea34cce7a7c011
   m_configObjects: {}
